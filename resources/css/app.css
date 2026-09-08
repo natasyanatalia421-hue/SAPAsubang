@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+
+/* Pagination Tailwind — sesuaikan styling default Laravel */
+nav[role="navigation"] .flex {
+    @apply flex items-center gap-1 flex-wrap;
+}
+nav[role="navigation"] span[aria-current="page"] span,
+nav[role="navigation"] span[aria-disabled] span {
+    @apply px-3 py-1 rounded-lg text-sm;
+}
+nav[role="navigation"] a {
+    @apply px-3 py-1 rounded-lg text-sm text-blue-600 hover:bg-blue-50 transition-colors;
+}
