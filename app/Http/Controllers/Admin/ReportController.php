@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Report;
 use App\Models\User;
+use App\Notifications\LaporanSelesai;
 use App\Services\ReportService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -87,6 +88,12 @@ class ReportController extends Controller
 
         $report->update(['status' => 'selesai']);
         $this->svc->changeStatus($report, 'selesai', $data['catatan'] ?? 'Pekerjaan dikonfirmasi selesai oleh admin.');
+
+        // Kirim email ke pelapor + semua pendukung
+        collect([$report->user])
+            ->merge($report->supporters)
+            ->unique('id')
+            ->each(fn ($penerima) => $penerima->notify(new LaporanSelesai($report)));
 
         return back()->with('success', 'Laporan dikonfirmasi selesai. Notifikasi telah dikirim ke pelapor dan pendukung.');
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -85,6 +86,12 @@ class Report extends Model
     public function supports(): HasMany
     {
         return $this->hasMany(ReportSupport::class, 'report_id');
+    }
+
+    // tambahan baru: shortcut langsung ke kumpulan User pendukung
+    public function supporters(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'report_supports', 'report_id', 'user_id');
     }
 
     public function statusLogs(): HasMany
