@@ -22,7 +22,7 @@
             {{-- ── Step 1: Foto ────────────────────────────────────────────── --}}
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-2">
-                    📷 Foto Masalah <span class="text-red-500">*</span>
+                     Foto Masalah <span class="text-red-500">*</span>
                 </label>
 
                 {{-- Kamera / Upload --}}
@@ -44,7 +44,7 @@
                     <template x-if="photoPreview">
                         <div>
                             <img :src="photoPreview" class="max-h-48 mx-auto rounded-lg object-cover">
-                            <p class="text-xs text-green-600 mt-2 font-medium">✅ Foto siap dikirim — klik untuk ganti</p>
+                            <p class="text-xs text-green-600 mt-2 font-medium">Foto siap dikirim — klik untuk ganti</p>
                         </div>
                     </template>
                 </div>
@@ -59,7 +59,7 @@
                 <div class="flex gap-2 mb-3">
                     <button type="button" @click="getLocation()"
                             class="flex-1 bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-700 text-sm font-medium py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
-                        <span x-show="!locating">🎯 Ambil Lokasi Saya</span>
+                        <span x-show="!locating">Ambil Lokasi Saya</span>
                         <span x-show="locating" x-cloak>⏳ Mengambil lokasi...</span>
                     </button>
                 </div>
@@ -67,7 +67,7 @@
                 {{-- Peta Leaflet --}}
                 <div id="map" class="w-full h-52 rounded-xl border border-gray-200 z-0"></div>
                 <p x-show="lat && lon" class="text-xs text-green-600 mt-1.5 font-medium">
-                    ✅ Koordinat: <span x-text="lat.toFixed(6)"></span>, <span x-text="lon.toFixed(6)"></span>
+                    Koordinat: <span x-text="lat.toFixed(6)"></span>, <span x-text="lon.toFixed(6)"></span>
                 </p>
                 <p x-show="!lat && !locating" class="text-xs text-gray-400 mt-1.5">
                     Klik "Ambil Lokasi Saya" atau klik pada peta untuk menentukan lokasi.
@@ -80,7 +80,7 @@
             {{-- ── Step 3: Kategori ────────────────────────────────────────── --}}
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-2">
-                    🏷️ Kategori Masalah <span class="text-red-500">*</span>
+                    Kategori Masalah <span class="text-red-500">*</span>
                 </label>
                 <div class="grid grid-cols-2 gap-2 sm:grid-cols-3">
                     @foreach($categories as $cat)
@@ -100,7 +100,7 @@
             {{-- ── Step 4: Deskripsi ───────────────────────────────────────── --}}
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-2">
-                    📝 Keterangan / Deskripsi <span class="text-red-500">*</span>
+                    Keterangan / Deskripsi <span class="text-red-500">*</span>
                 </label>
                 <textarea name="deskripsi" rows="4" required minlength="10" maxlength="1000"
                           class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition resize-none"

@@ -13,7 +13,7 @@
 
     {{-- Kiri — foto --}}
     <div class="hidden lg:block relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=80"
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbnqCa7wi61HMph2rcSACR5iC8BKwrt2xbNgtOtPcAGQ&s=10"
              alt="Subang" class="absolute inset-0 w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-br from-green-900/80 to-green-700/60"></div>
         <div class="absolute inset-0 flex flex-col justify-between p-12">

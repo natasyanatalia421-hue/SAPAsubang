@@ -79,7 +79,7 @@
                     @csrf
                     <button type="submit"
                             class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition-colors">
-                        👍 Dukung Laporan Ini
+                        Dukung Laporan Ini
                     </button>
                 </form>
             @endif

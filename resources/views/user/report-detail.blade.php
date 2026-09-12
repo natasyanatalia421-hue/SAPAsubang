@@ -39,7 +39,7 @@
     {{-- Foto sebelum & sesudah --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="bg-white rounded-2xl border border-gray-200 p-4">
-            <p class="text-sm font-semibold text-gray-700 mb-3">📷 Foto Sebelum</p>
+            <p class="text-sm font-semibold text-gray-700 mb-3">Foto Sebelum</p>
             <img src="{{ Storage::url($report->foto_sebelum) }}"
                  onerror="this.src='https://placehold.co/400x250?text=Foto+Sebelum'"
                  class="w-full h-48 object-cover rounded-xl">
@@ -47,7 +47,7 @@
 
         @if($report->latestEvidence)
         <div class="bg-white rounded-2xl border border-gray-200 p-4">
-            <p class="text-sm font-semibold text-gray-700 mb-3">✅ Foto Sesudah</p>
+            <p class="text-sm font-semibold text-gray-700 mb-3">Foto Sesudah</p>
             <img src="{{ Storage::url($report->latestEvidence->foto_sesudah) }}"
                  onerror="this.src='https://placehold.co/400x250?text=Foto+Sesudah'"
                  class="w-full h-48 object-cover rounded-xl">
@@ -56,7 +56,6 @@
         @else
         <div class="bg-gray-50 rounded-2xl border border-dashed border-gray-200 p-4 flex items-center justify-center">
             <div class="text-center text-gray-400">
-                <div class="text-4xl mb-2">🔨</div>
                 <p class="text-sm">Foto sesudah belum tersedia</p>
             </div>
         </div>
@@ -65,7 +64,7 @@
 
     {{-- Deskripsi --}}
     <div class="bg-white rounded-2xl border border-gray-200 p-6">
-        <p class="text-sm font-semibold text-gray-700 mb-2">📝 Deskripsi Masalah</p>
+        <p class="text-sm font-semibold text-gray-700 mb-2">Deskripsi Masalah</p>
         <p class="text-gray-600 text-sm leading-relaxed">{{ $report->deskripsi }}</p>
     </div>
 
@@ -80,7 +79,7 @@
 
     {{-- Timeline status --}}
     <div class="bg-white rounded-2xl border border-gray-200 p-6">
-        <p class="text-sm font-semibold text-gray-700 mb-4">🕐 Riwayat Status</p>
+        <p class="text-sm font-semibold text-gray-700 mb-4">Riwayat Status</p>
         <div class="relative">
             <div class="absolute left-3.5 top-0 bottom-0 w-0.5 bg-gray-200"></div>
             <div class="space-y-4">

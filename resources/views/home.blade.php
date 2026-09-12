@@ -130,61 +130,93 @@
 </section>
 
 {{-- ══════════════════════════════════════════════
-     SEJARAH & BUDAYA SUBANG
+     MENGENAL SUBANG
+     (dirombak: layout lebih rapi, ikon SVG konsisten
+     — bukan emoji, dan konten lebih lengkap)
 ══════════════════════════════════════════════ --}}
 <section class="bg-white py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <p class="text-green-600 text-xs font-bold uppercase tracking-widest mb-3">Mengenal Subang</p>
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 leading-snug mb-6">
-                    Sejarah, Budaya & Keunikan Kota Subang
-                </h2>
-                <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                    Kabupaten Subang memiliki sejarah panjang yang erat kaitannya dengan masa penjajahan Belanda.
-                    Nama <em>"Subang"</em> berasal dari kata <em>Soebang</em>, yang dahulu merupakan kawasan perkebunan
-                    karet dan teh milik perusahaan Belanda P&T Lands. Kota ini berkembang pesat sejak abad ke-19
-                    sebagai pusat agribisnis Jawa Barat.
-                </p>
-                <p class="text-gray-600 text-sm leading-relaxed mb-8">
-                    Subang dikenal sebagai <strong class="text-gray-800">"Kota Nanas"</strong> — buah nanas Subang
-                    terkenal di seluruh Nusantara karena rasanya yang manis. Subang juga kaya akan seni budaya Sunda
-                    seperti <strong class="text-gray-800">Sisingaan</strong>, kesenian khas yang ditampilkan dalam
-                    berbagai perayaan adat dan kemerdekaan.
-                </p>
 
-                <div class="grid grid-cols-2 gap-3">
-                    @foreach([
-                        ['🍍','Kota Nanas','Produsen nanas terbesar di Jawa Barat'],
-                        ['🎭','Sisingaan','Kesenian tradisional khas Subang'],
-                        ['🌾','Agribisnis','Pusat pertanian padi & hortikultura'],
-                        ['🏔️','Alam Indah','Berdekatan dengan Gunung Tangkuban Parahu'],
-                    ] as [$ic,$t,$d])
-                    <div class="flex gap-3 p-4 rounded-xl bg-gray-50 border border-gray-100 hover:border-green-200 hover:bg-green-50/30 transition-colors">
-                        <span class="text-2xl flex-shrink-0 leading-none mt-0.5">{{ $ic }}</span>
-                        <div>
-                            <div class="text-xs font-semibold text-gray-800 mb-0.5">{{ $t }}</div>
-                            <div class="text-xs text-gray-500 leading-snug">{{ $d }}</div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
+        {{-- Header --}}
+        <div class="text-center max-w-2xl mx-auto mb-14">
+            <p class="text-green-600 text-xs font-bold uppercase tracking-widest mb-2">Profil daerah</p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-5">Mengenal Kabupaten Subang</h2>
+            <p class="text-gray-500 text-sm leading-relaxed">
+                Kabupaten Subang di Provinsi Jawa Barat memiliki jejak sejarah panjang, mulai dari permukiman
+                masa prasejarah, pengaruh kerajaan Sunda dan penyebaran Islam, hingga masa kolonial ketika
+                sebagian besar lahannya dikelola sebagai kawasan perkebunan karet dan teh oleh perusahaan
+                Belanda Pamanoekan en Tjiasemlanden (P&amp;T Lands). Warisan itulah yang membentuk Subang
+                menjadi daerah agraris dengan hasil bumi melimpah seperti sekarang.
+            </p>
+            <a href="/tentang"
+               class="inline-flex items-center gap-1.5 text-sm font-semibold text-green-600 hover:text-green-700 mt-5">
+                Baca profil lengkap Subang
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
 
-            <div class="grid grid-cols-2 gap-3">
-                <div class="col-span-2 rounded-2xl overflow-hidden aspect-video bg-gray-100">
-                    <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80"
-                         alt="Subang" class="w-full h-full object-cover">
-                </div>
-                <div class="rounded-xl overflow-hidden h-36 bg-gray-100">
-                    <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=400&q=80"
-                         alt="Subang alam" class="w-full h-full object-cover">
-                </div>
-                <div class="rounded-xl overflow-hidden h-36 bg-gray-100">
-                    <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=400&q=80"
-                         alt="Subang sawah" class="w-full h-full object-cover">
-                </div>
+        {{-- Galeri foto --}}
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-14">
+            <div class="col-span-2 sm:col-span-2 rounded-2xl overflow-hidden bg-gray-100 h-56 sm:h-64">
+                <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80"
+                     alt="Pemandangan Kabupaten Subang" class="w-full h-full object-cover">
             </div>
+            <div class="rounded-2xl overflow-hidden bg-gray-100 h-56 sm:h-64">
+                <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=400&q=80"
+                     alt="Alam Subang" class="w-full h-full object-cover">
+            </div>
+            <div class="rounded-2xl overflow-hidden bg-gray-100 h-56 sm:h-64">
+                <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=400&q=80"
+                     alt="Sawah di Subang" class="w-full h-full object-cover">
+            </div>
+        </div>
+
+        {{-- Kartu info --}}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            @foreach([
+                [
+                    'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>',
+                    'title' => 'Sejarah singkat',
+                    'desc'  => 'Jejak permukiman di Subang sudah ada sejak masa prasejarah, dibuktikan temuan kapak batu neolitikum di Binong, Kalijati, dan Sagalaherang. Wilayah ini kemudian menjadi bagian kekuasaan kerajaan Sunda sebelum berkembang menjadi kawasan perkebunan pada masa kolonial Belanda.',
+                ],
+                [
+                    'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>',
+                    'title' => 'Suku dan bahasa',
+                    'desc'  => 'Mayoritas warga Subang berasal dari suku Sunda dengan bahasa Sunda sebagai bahasa keseharian, sementara sebagian wilayah pesisir utara menggunakan dialek Jawa Cirebon akibat percampuran budaya sejak masa kerajaan Mataram.',
+                ],
+                [
+                    'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-2v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"/>',
+                    'title' => 'Kesenian Sisingaan',
+                    'desc'  => 'Sisingaan adalah kesenian khas Subang berupa boneka berbentuk singa yang diarak dan ditunggangi anak-anak, biasa ditampilkan pada perayaan khitanan, hari kemerdekaan, dan acara adat lainnya.',
+                ],
+                [
+                    'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21c-4-2-7-6-7-10a7 7 0 0114 0c0 4-3 8-7 10z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11v6"/>',
+                    'title' => 'Kota Nanas',
+                    'desc'  => 'Nanas madu menjadi komoditas unggulan Subang dan mudah ditemui di sepanjang jalur Jalancagak. Selain dijual segar, nanas juga diolah menjadi dodol dan keripik sebagai oleh-oleh khas daerah.',
+                ],
+                [
+                    'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 20l6-10 4 6 3-4 5 8H3z"/>',
+                    'title' => 'Wisata alam',
+                    'desc'  => 'Berdekatan dengan kaki Gunung Tangkuban Parahu, Subang memiliki kawasan wisata alam seperti pemandian air panas Ciater, hamparan kebun teh, dan garis pantai di pesisir utara seperti Pamanukan dan Blanakan.',
+                ],
+                [
+                    'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>',
+                    'title' => 'Wilayah administratif',
+                    'desc'  => 'Kabupaten Subang terbagi ke dalam 30 kecamatan dengan Kota Subang sebagai ibu kota, berbatasan dengan Indramayu di utara, Sumedang di timur, Bandung Barat dan Purwakarta di selatan, serta Karawang di barat.',
+                ],
+            ] as $item)
+            <div class="p-6 rounded-2xl border border-gray-100 hover:border-green-200 hover:shadow-md transition-all">
+                <div class="w-11 h-11 bg-green-50 border border-green-100 rounded-xl flex items-center justify-center text-green-600 mb-4">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {!! $item['icon'] !!}
+                    </svg>
+                </div>
+                <h3 class="text-sm font-semibold text-gray-800 mb-2">{{ $item['title'] }}</h3>
+                <p class="text-xs text-gray-500 leading-relaxed">{{ $item['desc'] }}</p>
+            </div>
+            @endforeach
         </div>
     </div>
 </section>

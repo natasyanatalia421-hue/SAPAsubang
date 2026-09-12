@@ -36,7 +36,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
                 <p class="text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">Sebelum</p>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden">
+                <div class="aspect-[4/3] bg-gray-100 rounded-xl overflow-hidden">
                     @if(str_starts_with($report->foto_sebelum, 'demo/'))
                         <div class="w-full h-full flex items-center justify-center text-4xl bg-gray-200">{{ $report->category->icon }}</div>
                     @else
@@ -48,7 +48,7 @@
             @if($report->latestEvidence)
             <div>
                 <p class="text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">Sesudah Penanganan</p>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden">
+                <div class="aspect-[4/3] bg-gray-100 rounded-xl overflow-hidden">
                     @if(str_starts_with($report->latestEvidence->foto_sesudah, 'demo/'))
                         <div class="w-full h-full flex items-center justify-center text-4xl bg-green-100">✅</div>
                     @else
@@ -64,7 +64,7 @@
 
     {{-- Deskripsi & Lokasi --}}
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <h3 class="font-semibold text-gray-800 mb-3">📝 Detail Laporan</h3>
+        <h3 class="font-semibold text-gray-800 mb-3">Detail Laporan</h3>
         <p class="text-gray-700 text-sm leading-relaxed">{{ $report->deskripsi }}</p>
 
         <div class="mt-4 flex items-center gap-2 text-sm text-gray-500">
@@ -78,7 +78,7 @@
 
     {{-- Timeline status --}}
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <h3 class="font-semibold text-gray-800 mb-4">📋 Riwayat Status</h3>
+        <h3 class="font-semibold text-gray-800 mb-4">Riwayat Status</h3>
         <div class="space-y-4">
             @foreach($report->statusLogs as $log)
             <div class="flex gap-3">

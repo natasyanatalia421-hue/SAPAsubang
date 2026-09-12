@@ -126,23 +126,46 @@ class Report extends Model
 
     /**
      * Cari laporan dengan kategori sama dalam radius (meter) menggunakan Haversine.
+     * Jarak dihitung di PHP (bukan di query SQL) supaya kompatibel dengan SQLite
+     * maupun MySQL/lainnya — SQLite tidak punya fungsi acos/cos/sin/radians bawaan.
      * Mengembalikan laporan yang belum ditolak dan belum selesai.
      */
     public static function findNearby(float $lat, float $lng, int $categoryId, float $radiusMeters = 100): ?self
     {
-        // Haversine formula langsung di SQL untuk SQLite
-        return self::selectRaw("
-                *,
-                (6371000 * acos(
-                    cos(radians(?)) * cos(radians(latitude))
-                    * cos(radians(longitude) - radians(?))
-                    + sin(radians(?)) * sin(radians(latitude))
-                )) AS distance
-            ", [$lat, $lng, $lat])
-            ->where('category_id', $categoryId)
+        $candidates = self::where('category_id', $categoryId)
             ->whereNotIn('status', ['ditolak', 'selesai'])
-            ->having('distance', '<=', $radiusMeters)
-            ->orderBy('distance')
-            ->first();
+            ->get();
+
+        $nearest = null;
+        $nearestDistance = null;
+
+        foreach ($candidates as $report) {
+            $distance = self::haversineDistance($lat, $lng, $report->latitude, $report->longitude);
+
+            if ($distance <= $radiusMeters && ($nearestDistance === null || $distance < $nearestDistance)) {
+                $nearest = $report;
+                $nearestDistance = $distance;
+            }
+        }
+
+        return $nearest;
+    }
+
+    /**
+     * Hitung jarak antara dua koordinat (dalam meter) pakai formula Haversine, murni di PHP.
+     */
+    private static function haversineDistance(float $lat1, float $lng1, float $lat2, float $lng2): float
+    {
+        $earthRadius = 6371000; // meter
+
+        $latDelta = deg2rad($lat2 - $lat1);
+        $lngDelta = deg2rad($lng2 - $lng1);
+
+        $a = sin($latDelta / 2) ** 2
+            + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($lngDelta / 2) ** 2;
+
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+
+        return $earthRadius * $c;
     }
 }

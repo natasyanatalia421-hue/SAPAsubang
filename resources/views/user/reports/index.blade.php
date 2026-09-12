@@ -8,7 +8,7 @@
         <p class="text-sm text-gray-500">Total: {{ $reports->total() }} laporan</p>
         <a href="{{ route('user.reports.create') }}"
            class="bg-blue-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
-            📝 Buat Laporan
+            Buat Laporan
         </a>
     </div>
 
