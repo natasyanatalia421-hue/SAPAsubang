@@ -12,9 +12,12 @@ use App\Http\Controllers\Petugas\DashboardController as PetugasDashboard;
 use App\Http\Controllers\Petugas\TaskController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SocialAuthController;
+
 // ── Halaman Publik ────────────────────────────────────────────────────────────
 Route::get('/',           [PublicController::class, 'home'])->name('home');
 Route::get('/tentang',    [PublicController::class, 'tentang'])->name('tentang');
+Route::get('/wisata',     [PublicController::class, 'wisata'])->name('wisata');
 Route::get('/berita',     [PublicController::class, 'berita'])->name('berita');
 Route::get('/berita/{slug}', [PublicController::class, 'beritaShow'])->name('berita.show');
 Route::get('/laporan',    [PublicController::class, 'laporanPublik'])->name('laporan.publik');
@@ -25,6 +28,10 @@ Route::middleware('guest')->group(function () {
     Route::post('/login',   [AuthController::class, 'login']);
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register',[AuthController::class, 'register']);
+
+    // Google OAuth
+    Route::get('/auth/google',          [SocialAuthController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');

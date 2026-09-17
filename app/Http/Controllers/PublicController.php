@@ -13,59 +13,108 @@ class PublicController extends Controller
     {
         return [
             [
-                'slug'      => 'perbaikan-jalan-raya-subang',
-                'judul'     => 'Perbaikan Jalan di Beberapa Titik Kota Subang Dimulai',
-                'ringkasan' => 'Dinas PUPR Kabupaten Subang memulai perbaikan jalan di beberapa ruas yang rusak akibat cuaca ekstrem.',
-                'isi'       => "Dinas Pekerjaan Umum dan Penataan Ruang (PUPR) Kabupaten Subang resmi memulai program perbaikan jalan di sejumlah titik yang mengalami kerusakan cukup parah.\n\nPerbaikan ini dilakukan sebagai respons atas banyaknya laporan dari masyarakat melalui aplikasi SAPAsubang dan laporan langsung ke kantor dinas. Total ada 12 titik yang akan diperbaiki dalam tahap pertama.\n\n\"Kami menargetkan perbaikan selesai dalam waktu 3 minggu ke depan,\" ujar Kepala Dinas PUPR Subang.\n\nMasyarakat diimbau untuk berhati-hati melintas di area perbaikan dan tetap aktif melaporkan kerusakan infrastruktur melalui aplikasi SAPAsubang.",
-                'kategori'  => 'Infrastruktur',
-                'tanggal'   => '2 Sep 2026',
-                'icon'      => '🛣️',
-                'foto'      => 'https://images.unsplash.com/photo-1573649601518-e4b94ba0db52?w=600&q=80',
-                'gradient'  => 'from-orange-100 to-yellow-100',
+                'slug'          => 'apel-besar-disiplin-pelayanan-publik',
+                'judul'         => 'Pemkot Subang Gelar Apel Besar Perkuat Disiplin dan Pelayanan Publik',
+                'ringkasan'     => 'Pemerintah kota menggelar apel besar yang diikuti seluruh OPD, ASN, dan tenaga fasilitator sebagai bentuk komitmen bersama untuk meningkatkan inspirasi, profesionalisme, dan aktualisasi sebagai warga masyarakat.',
+                'isi'           => "Pemerintah Kota Subang menggelar apel besar yang diikuti seluruh OPD, ASN, dan tenaga fasilitator sebagai bentuk komitmen bersama untuk meningkatkan disiplin dan kualitas pelayanan publik.\n\nDalam apel tersebut, Wali Kota Subang menegaskan pentingnya integritas dan profesionalisme setiap aparatur pemerintah dalam melayani masyarakat.",
+                'kategori'      => 'Pemerintahan',
+                'kategori_slug' => 'pemerintahan',
+                'warna'         => '#1d4ed8',
+                'tanggal'       => '12 Sep 2025',
+                'foto'          => '',
+                'gradient'      => 'from-blue-100 to-indigo-100',
+                'icon'          => '🏛️',
             ],
             [
-                'slug'      => 'program-pengelolaan-sampah-subang',
-                'judul'     => 'Program Pengelolaan Sampah Terpadu Kota Subang Resmi Diluncurkan',
-                'ringkasan' => 'Pemkab Subang meluncurkan program pengelolaan sampah terpadu untuk mengatasi masalah sampah liar.',
-                'isi'       => "Pemerintah Kabupaten Subang secara resmi meluncurkan Program Pengelolaan Sampah Terpadu yang bertujuan mengurangi volume sampah liar di seluruh wilayah kabupaten.\n\nProgram ini mencakup penambahan armada pengangkut sampah, pembangunan TPS3R (Tempat Pengolahan Sampah Reuse, Reduce, Recycle), serta edukasi masyarakat tentang pemilahan sampah dari rumah.\n\nMasyarakat juga dapat melaporkan titik-titik sampah liar melalui aplikasi SAPAsubang agar dapat segera ditangani petugas kebersihan.",
-                'kategori'  => 'Lingkungan',
-                'tanggal'   => '1 Sep 2026',
-                'icon'      => '♻️',
-                'foto'      => 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&q=80',
-                'gradient'  => 'from-green-100 to-teal-100',
+                'slug'          => 'infrastruktur-jalan-subang-cikaum',
+                'judul'         => 'Pembangunan Infrastruktur Jalan Ruas Subang-Cikaum Capai 70%',
+                'ringkasan'     => 'Progres pembangunan jalan ruas Subang-Cikaum saat ini telah mencapai 70%. Pemerintah daerah bekerja keras untuk menyelesaikan proyek ini sesuai dengan target yang ditetapkan.',
+                'isi'           => "Pembangunan infrastruktur jalan ruas Subang-Cikaum terus berjalan dengan progres mencapai 70%. Proyek ini merupakan bagian dari program pembangunan infrastruktur daerah.\n\nDitargetkan selesai pada akhir tahun 2025, pembangunan jalan ini akan meningkatkan konektivitas antar wilayah di Kabupaten Subang.",
+                'kategori'      => 'Pembangunan',
+                'kategori_slug' => 'pembangunan',
+                'warna'         => '#d97706',
+                'tanggal'       => '10 Sep 2025',
+                'foto'          => '',
+                'gradient'      => 'from-orange-100 to-yellow-100',
+                'icon'          => '🔧',
             ],
             [
-                'slug'      => 'normalisasi-sungai-cilamaya',
-                'judul'     => 'Normalisasi Sungai Cilamaya untuk Cegah Banjir Musim Hujan',
-                'ringkasan' => 'Proyek normalisasi Sungai Cilamaya resmi dimulai untuk mencegah banjir di musim hujan mendatang.',
-                'isi'       => "Pemerintah Kabupaten Subang bersama Balai Besar Wilayah Sungai (BBWS) Citarum memulai proyek normalisasi Sungai Cilamaya sepanjang 15 kilometer.\n\nProyek ini diharapkan dapat mengurangi risiko banjir yang kerap melanda permukiman warga di bantaran sungai setiap musim hujan. Selain normalisasi, akan dilakukan juga pembangunan tanggul pengaman di beberapa titik rawan.",
-                'kategori'  => 'Infrastruktur',
-                'tanggal'   => '30 Ags 2026',
-                'icon'      => '🌊',
-                'foto'      => 'https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=600&q=80',
-                'gradient'  => 'from-blue-100 to-cyan-100',
+                'slug'          => 'smpn3-raih-juara-olimpiade-sains',
+                'judul'         => 'SMPN 3 Subang Raih Juara 1 Olimpiade Sains Tingkat Jawa Barat',
+                'ringkasan'     => 'SMPN 3 Subang berhasil meraih juara 1 dalam Olimpiade Sains Tingkat Jawa Barat. Prestasi ini membanggakan bagi seluruh warga sekolah dan Kabupaten Subang.',
+                'isi'           => "SMPN 3 Subang kembali menorehkan prestasi gemilang dengan meraih juara 1 dalam Olimpiade Sains Tingkat Jawa Barat.\n\nPrestasi ini merupakan hasil kerja keras siswa dan pembinaan intensif dari para guru.",
+                'kategori'      => 'Pendidikan',
+                'kategori_slug' => 'pendidikan',
+                'warna'         => '#7c3aed',
+                'tanggal'       => '8 Sep 2025',
+                'foto'          => '',
+                'gradient'      => 'from-purple-100 to-indigo-100',
+                'icon'          => '🎓',
             ],
             [
-                'slug'      => 'lampu-jalan-led-subang',
-                'judul'     => 'Pemkab Subang Ganti 2.000 Lampu Jalan Konvensional dengan LED',
-                'ringkasan' => 'Untuk menghemat energi dan meningkatkan keamanan, pemkab mulai mengganti lampu jalan dengan LED.',
-                'isi'       => "Dinas Perhubungan Kabupaten Subang mulai melaksanakan program penggantian 2.000 lampu jalan konvensional dengan lampu LED hemat energi di seluruh wilayah kabupaten.\n\nProgram ini merupakan bagian dari Smart City Subang yang bertujuan meningkatkan efisiensi energi sekaligus meningkatkan keamanan dan kenyamanan masyarakat saat beraktivitas di malam hari.",
-                'kategori'  => 'Fasilitas Umum',
-                'tanggal'   => '28 Ags 2026',
-                'icon'      => '💡',
-                'foto'      => 'https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=600&q=80',
-                'gradient'  => 'from-yellow-100 to-amber-100',
+                'slug'          => 'gerakan-bersih-sungai-cijalu',
+                'judul'         => 'Gerakan Bersih Sungai Cijalu, Wujudkan Subang Lebih Hijau',
+                'ringkasan'     => 'Pemerintah bersama masyarakat menggelar kegiatan bersih sungai Cijalu sebagai langkah nyata menjaga kelestarian lingkungan dan mewujudkan Subang yang lebih hijau dan sehat.',
+                'isi'           => "Gerakan bersih Sungai Cijalu digelar sebagai upaya bersama untuk menjaga kelestarian alam dan kebersihan lingkungan di Kabupaten Subang.",
+                'kategori'      => 'Lingkungan',
+                'kategori_slug' => 'lingkungan',
+                'warna'         => '#16a34a',
+                'tanggal'       => '6 Sep 2025',
+                'foto'          => '',
+                'gradient'      => 'from-green-100 to-teal-100',
+                'icon'          => '🌿',
             ],
             [
-                'slug'      => 'aplikasi-sapasubang-diluncurkan',
-                'judul'     => 'Aplikasi SAPAsubang Resmi Diluncurkan untuk Permudah Pelaporan Masyarakat',
-                'ringkasan' => 'Pemkab Subang meluncurkan SAPAsubang, platform digital pelaporan masalah fasilitas umum berbasis GPS.',
-                'isi'       => "Pemerintah Kabupaten Subang resmi meluncurkan aplikasi SAPAsubang (Sistem Aduan & Pelaporan Aspirasi Subang), sebuah platform digital yang memudahkan masyarakat melaporkan permasalahan fasilitas umum.\n\nDengan aplikasi ini, masyarakat dapat melaporkan masalah seperti jalan rusak, lampu jalan mati, sampah menumpuk, banjir, dan kerusakan fasilitas umum hanya dengan memfoto masalah, dan sistem akan otomatis mendeteksi lokasi via GPS.\n\n\"Kami berharap dengan adanya SAPAsubang, respons pemerintah terhadap masalah di lapangan bisa lebih cepat dan transparan,\" ujar Bupati Subang.",
-                'kategori'  => 'Teknologi',
-                'tanggal'   => '25 Ags 2026',
-                'icon'      => '📱',
-                'foto'      => 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80',
-                'gradient'  => 'from-purple-100 to-indigo-100',
+                'slug'          => 'festival-budaya-subang-2025',
+                'judul'         => 'Festival Budaya Subang 2025 Sukses Digelar',
+                'ringkasan'     => 'Ribuan masyarakat Kota Subang antusias dalam rangka Festival Budaya Subang 2025 yang menampilkan seni tradisional, parade budaya, dan UMKM lokal.',
+                'isi'           => "Festival Budaya Subang 2025 berhasil digelar dengan meriah dan dihadiri ribuan pengunjung dari berbagai daerah.",
+                'kategori'      => 'Pariwisata',
+                'kategori_slug' => 'sosial',
+                'warna'         => '#db2777',
+                'tanggal'       => '4 Sep 2025',
+                'foto'          => '',
+                'gradient'      => 'from-pink-100 to-rose-100',
+                'icon'          => '🎭',
+            ],
+            [
+                'slug'          => 'umkm-subang-produk-unggulan',
+                'judul'         => 'UMKM Subang Tunjukkan Produk Unggulan di Pameran Nasional',
+                'ringkasan'     => 'Sejumlah pelaku UMKM asal Subang tampil memukau dalam pameran nasional, menampilkan berbagai produk unggulan seperti kuliner, kerajinan, dan olahan pertanian.',
+                'isi'           => "Para pelaku UMKM dari Kabupaten Subang berhasil menampilkan produk-produk unggulan mereka di pameran nasional.",
+                'kategori'      => 'Ekonomi',
+                'kategori_slug' => 'ekonomi',
+                'warna'         => '#0891b2',
+                'tanggal'       => '2 Sep 2025',
+                'foto'          => '',
+                'gradient'      => 'from-cyan-100 to-blue-100',
+                'icon'          => '📈',
+            ],
+            [
+                'slug'          => 'penanaman-pohon-wisata-panarukan',
+                'judul'         => 'Penanaman Pohon di Area Wisata Panarukan',
+                'ringkasan'     => 'Pemerintah bersama komunitas lingkungan melaksanakan kegiatan penanaman pohon di kawasan wisata Panarukan untuk menjaga Wisata Panarukan.',
+                'isi'           => "Kegiatan penanaman pohon di kawasan Wisata Panarukan dilaksanakan sebagai bagian dari program penghijauan Kabupaten Subang.",
+                'kategori'      => 'Wisata',
+                'kategori_slug' => 'lingkungan',
+                'warna'         => '#16a34a',
+                'tanggal'       => '31 Agu 2025',
+                'foto'          => '',
+                'gradient'      => 'from-green-100 to-emerald-100',
+                'icon'          => '🌳',
+            ],
+            [
+                'slug'          => 'posyandu-remaja-kecamatan',
+                'judul'         => 'Dinas Kesehatan Gelar Posyandu Remaja di Seluruh Kecamatan',
+                'ringkasan'     => 'Dinas Kesehatan Kota Subang menggelar kegiatan Posyandu Remaja di seluruh kecamatan sebagai upaya mendukung hidup sehat bagi generasi muda.',
+                'isi'           => "Kegiatan Posyandu Remaja digelar secara serentak di seluruh kecamatan di Kabupaten Subang sebagai bentuk perhatian pemerintah terhadap kesehatan generasi muda.",
+                'kategori'      => 'Kesehatan',
+                'kategori_slug' => 'kesehatan',
+                'warna'         => '#dc2626',
+                'tanggal'       => '29 Agu 2025',
+                'foto'          => '',
+                'gradient'      => 'from-red-100 to-rose-100',
+                'icon'          => '🏥',
             ],
         ];
     }
@@ -111,10 +160,24 @@ class PublicController extends Controller
         return view('tentang');
     }
 
+    // ── WISATA ────────────────────────────────────────────────────────────────
+    public function wisata()
+    {
+        return view('wisata');
+    }
+
     // ── BERITA INDEX ──────────────────────────────────────────────────────────
     public function berita()
     {
-        $berita = $this->beritaData();
+        $all = $this->beritaData();
+
+        // Filter berdasarkan kategori jika ada
+        $kategoriFilter = request('kategori', 'semua');
+
+        $berita = $kategoriFilter === 'semua'
+            ? $all
+            : array_values(array_filter($all, fn($b) => strtolower($b['kategori_slug'] ?? '') === $kategoriFilter));
+
         return view('berita.index', compact('berita'));
     }
 
@@ -148,9 +211,10 @@ class PublicController extends Controller
 
         // Stats untuk sidebar
         $stats = [
-            'total'   => Report::count(),
-            'selesai' => Report::where('status', 'selesai')->count(),
-            'proses'  => Report::whereIn('status', ['terverifikasi','ditugaskan','menuju_lokasi','sedang_ditangani','menunggu_konfirmasi'])->count(),
+            'total'    => Report::count(),
+            'selesai'  => Report::where('status', 'selesai')->count(),
+            'proses'   => Report::whereIn('status', ['terverifikasi','ditugaskan','menuju_lokasi','sedang_ditangani','menunggu_konfirmasi'])->count(),
+            'menunggu' => Report::where('status', 'menunggu_verifikasi')->count(),
         ];
 
         // Data peta — koordinat Kabupaten Subang yang benar

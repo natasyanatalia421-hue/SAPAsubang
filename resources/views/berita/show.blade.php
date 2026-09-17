@@ -6,20 +6,21 @@
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
     <nav class="flex items-center gap-2 text-xs text-gray-400 mb-6">
-        <a href="{{ route('home') }}" class="hover:text-green-600 transition-colors">Home</a>
+        <a href="{{ route('home') }}" class="hover:text-green-600">Home</a>
         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <a href="{{ route('berita') }}" class="hover:text-green-600 transition-colors">Berita</a>
+        <a href="{{ route('berita') }}" class="hover:text-green-600">Berita</a>
         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         <span class="text-gray-600 truncate max-w-[200px]">{{ $berita['judul'] }}</span>
     </nav>
 
     <article class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
-        {{-- Hero foto --}}
-        <div class="relative aspect-video overflow-hidden">
-            <img src="{{ $berita['foto'] }}" alt="{{ $berita['judul'] }}" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+        {{-- Slot foto hero artikel — ganti div ini dengan <img src="/images/berita/xxx.jpg" class="w-full h-full object-cover"> --}}
+        <div class="relative aspect-video bg-gray-100 flex flex-col items-center justify-center gap-3 border-b border-dashed border-gray-200">
+            <span class="text-6xl">{{ $berita['icon'] }}</span>
+            <span class="text-sm text-gray-400 font-medium">Foto Artikel — 800×450px</span>
             <div class="absolute bottom-4 left-6">
-                <span class="text-xs font-bold text-white bg-green-600 px-3 py-1.5 rounded-full">{{ $berita['kategori'] }}</span>
+                <span class="text-xs font-bold text-white px-3 py-1.5 rounded-full"
+                      style="background: {{ $berita['warna'] ?? '#16a34a' }}">{{ $berita['kategori'] }}</span>
             </div>
         </div>
 
@@ -47,10 +48,11 @@
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             @foreach($lainnya as $b)
             <a href="{{ route('berita.show', $b['slug']) }}"
-               class="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-200 hover:-translate-y-0.5">
-                <div class="aspect-video overflow-hidden">
-                    <img src="{{ $b['foto'] }}" alt="{{ $b['judul'] }}"
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+               class="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-md transition-all hover:-translate-y-0.5">
+                {{-- Slot foto berita lainnya --}}
+                <div class="aspect-video bg-gray-100 flex flex-col items-center justify-center gap-1 border-b border-dashed border-gray-200">
+                    <span class="text-2xl">{{ $b['icon'] }}</span>
+                    <span class="text-[10px] text-gray-400">600×338px</span>
                 </div>
                 <div class="p-3.5">
                     <span class="text-[11px] text-green-600 font-semibold">{{ $b['kategori'] }}</span>

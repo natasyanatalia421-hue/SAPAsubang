@@ -18,6 +18,7 @@ class User extends Authenticatable
         'password',
         'role',
         'no_hp',
+        'google_id',
     ];
 
     protected $hidden = [

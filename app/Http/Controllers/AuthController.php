@@ -33,7 +33,10 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended($this->redirectTo());
+        // Jika ada intended URL (mis. datang dari halaman laporan), balik ke sana
+        // Default: ke dashboard sesuai role
+        $default = $this->redirectTo();
+        return redirect()->intended($default);
     }
 
     public function showRegister()
