@@ -51,11 +51,11 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
             <h3 class="font-semibold text-gray-800 mb-3">📸 Foto Masalah</h3>
-            <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden">
+            <div class="bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center" style="max-height: 320px;">
                 @if(str_starts_with($report->foto_sebelum, 'demo/'))
-                    <div class="w-full h-full flex items-center justify-center text-5xl bg-gray-200">{{ $report->category->icon }}</div>
+                    <div class="w-full aspect-video flex items-center justify-center text-5xl bg-gray-200">{{ $report->category->icon }}</div>
                 @else
-                    <img src="{{ Storage::url($report->foto_sebelum) }}" class="w-full h-full object-cover" alt="Foto masalah">
+                    <img src="{{ Storage::url($report->foto_sebelum) }}" class="w-full h-auto max-h-[320px] object-contain" alt="Foto masalah">
                 @endif
             </div>
         </div>
@@ -117,11 +117,13 @@
                     Foto Sesudah <span class="text-red-500">*</span>
                 </label>
 
-                {{-- Preview --}}
-                <div x-show="preview" class="mb-3 aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                    <img :src="preview" class="w-full h-full object-cover">
-                    <button type="button" @click="preview = null; $refs.evidenceFile.value = ''"
-                            class="absolute top-2 right-2 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center text-xs">✕</button>
+                {{-- Preview: ukuran mengikuti bentuk asli foto (object-contain), tidak dipaksa 16:9
+                     supaya foto portrait dari kamera HP tidak terpotong --}}
+                <div x-show="preview" class="mb-3 bg-gray-100 rounded-xl overflow-hidden relative flex items-center justify-center" style="max-height: 400px;">
+                    <img :src="preview" class="w-full h-auto max-h-[400px] object-contain">
+                    <button type="button"
+                            @click="preview = null; $refs.evidenceFile.value = ''; $refs.uploadFile.value = ''"
+                            class="absolute top-2 right-2 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center text-xs shadow">✕</button>
                 </div>
 
                 <div x-show="!preview" class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center space-y-3">
@@ -131,14 +133,18 @@
                             📷 Buka Kamera
                             <input type="file" name="foto_sesudah" accept="image/*" capture="environment"
                                    class="hidden" x-ref="evidenceFile"
-                                   @change="preview = URL.createObjectURL($event.target.files[0])">
+                                   @change="preview = $event.target.files[0] ? URL.createObjectURL($event.target.files[0]) : null">
                         </label>
                         <label class="cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-lg">
                             🖼️ Upload Foto
                             <input type="file" name="foto_sesudah" accept="image/*" class="hidden"
-                                   @change="preview = URL.createObjectURL($event.target.files[0])">
+                                   x-ref="uploadFile"
+                                   @change="preview = $event.target.files[0] ? URL.createObjectURL($event.target.files[0]) : null">
                         </label>
                     </div>
+                    <p class="text-xs text-gray-400">
+                        "Buka Kamera" akan langsung mengaktifkan kamera di HP. Di laptop/desktop tanpa kamera intent, tombol ini akan membuka jendela pilih file biasa — itu wajar.
+                    </p>
                 </div>
                 @error('foto_sesudah')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
             </div>

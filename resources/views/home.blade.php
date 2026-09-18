@@ -4,7 +4,7 @@
 @section('content')
 
 {{-- ══ HERO ══ --}}
-<section class="relative overflow-hidden" style="min-height:480px;">
+<section class="relative overflow-hidden min-h-[420px] sm:min-h-[480px] lg:min-h-[560px]">
     {{-- Slot foto hero — ganti src dengan foto asli Anda --}}
     <div class="absolute inset-0">
         <div class="w-full h-full bg-gradient-to-br from-green-200 via-green-100 to-teal-100 flex items-center justify-center">
@@ -18,11 +18,11 @@
         <div class="absolute inset-0 bg-gradient-to-r from-green-900/85 via-green-800/60 to-transparent"></div>
     </div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 flex items-center">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28 flex items-center">
         <div class="max-w-xl">
             <p class="text-yellow-300 font-semibold text-sm mb-2 tracking-wide">Selamat Datang di</p>
-            <h1 class="text-5xl sm:text-6xl font-extrabold text-white leading-tight mb-4">Kota Subang</h1>
-            <p class="text-green-100/90 text-lg leading-relaxed mb-8 max-w-md">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4">Kota Subang</h1>
+            <p class="text-green-100/90 text-base sm:text-lg leading-relaxed mb-8 max-w-md">
                 Jelajahi keindahan alam, kekayaan budaya, serta pesona yang tak terlupakan.
             </p>
             <div class="flex flex-wrap gap-3">
@@ -42,7 +42,7 @@
 ══════════════════════════════════════════════ --}}
 <section class="border-y border-gray-100 bg-gray-50/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-100 text-center gap-0">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-6 sm:gap-y-0 sm:divide-x divide-gray-100 text-center">
             @foreach([
                 [$stats['total'],   'Total laporan'],
                 [$stats['selesai'], 'Selesai ditangani'],
@@ -50,7 +50,7 @@
                 [$stats['pelapor'], 'Warga terdaftar'],
             ] as [$val,$lbl])
             <div class="px-6 py-2">
-                <div class="text-3xl font-bold text-gray-900">{{ number_format($val) }}</div>
+                <div class="text-2xl sm:text-3xl font-bold text-gray-900">{{ number_format($val) }}</div>
                 <div class="text-xs text-gray-500 mt-1">{{ $lbl }}</div>
             </div>
             @endforeach
@@ -156,7 +156,7 @@
             <a href="{{ route('wisata') }}" class="text-sm font-semibold text-green-700 hover:text-green-800">Lihat Semua →</a>
         </div>
 
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             @foreach([
                 ['nama'=>'Curug Cileat',    'cat'=>'Wisata Alam',    'icon'=>'🌊', 'ukuran'=>'600×800px'],
                 ['nama'=>'Kebun Teh Ciater','cat'=>'Agrowisata',     'icon'=>'🍃', 'ukuran'=>'600×800px'],
@@ -294,12 +294,3 @@
 </section>
 
 @endsection
-
-@push('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const heroMap = L.map('hero-map-placeholder', {zoomControl:false,scrollWheelZoom:false,dragging:false}).setView([-6.5744,107.7599],10);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(heroMap);
-});
-</script>
-@endpush
