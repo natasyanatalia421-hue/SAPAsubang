@@ -42,9 +42,10 @@
             {{-- Logo --}}
             <a href="{{ route('home') }}" class="flex items-center gap-3 flex-shrink-0">
                 {{-- Logo resmi Kabupaten Subang --}}
-                <img src="{{ asset('images/logo-subang.png') }}"
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI0C7APY1RPu0BH5O4dpR3vVgHiZuHWxEYmLiaDN4HXQ&s=10"
                      alt="Logo Kabupaten Subang"
-                     class="w-12 h-12 flex-shrink-0 object-contain drop-shadow-sm">
+                     class="w-12 h-12 flex-shrink-0 object-contain drop-shadow-sm"
+                     onerror="this.src='https://ui-avatars.com/api/?name=Subang&background=15803d&color=fff&bold=true'">
                 <div class="leading-tight">
                     <div class="font-extrabold text-green-800 text-base leading-none tracking-wide">KOTA SUBANG</div>
                     <div class="text-[10px] text-gray-500 leading-none mt-0.5">Website Resmi Pemerintah Kota Subang</div>

@@ -117,30 +117,35 @@
                     Foto Sesudah <span class="text-red-500">*</span>
                 </label>
 
+                {{-- PENTING: hanya SATU input file dengan name="foto_sesudah".
+                     Dulu ada 2 input (kamera & upload) dengan name yang sama,
+                     itu bikin server cuma nerima input yang terakhir (kosong)
+                     walau user sudah pilih foto lewat kamera. --}}
+                <input type="file" name="foto_sesudah" accept="image/*" class="hidden" x-ref="fileInput"
+                       @change="preview = $event.target.files[0] ? URL.createObjectURL($event.target.files[0]) : null">
+
                 {{-- Preview: ukuran mengikuti bentuk asli foto (object-contain), tidak dipaksa 16:9
                      supaya foto portrait dari kamera HP tidak terpotong --}}
                 <div x-show="preview" class="mb-3 bg-gray-100 rounded-xl overflow-hidden relative flex items-center justify-center" style="max-height: 400px;">
                     <img :src="preview" class="w-full h-auto max-h-[400px] object-contain">
                     <button type="button"
-                            @click="preview = null; $refs.evidenceFile.value = ''; $refs.uploadFile.value = ''"
+                            @click="preview = null; $refs.fileInput.value = ''"
                             class="absolute top-2 right-2 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center text-xs shadow">✕</button>
                 </div>
 
                 <div x-show="!preview" class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center space-y-3">
                     <div class="text-3xl">📷</div>
                     <div class="flex flex-col sm:flex-row gap-2 justify-center">
-                        <label class="cursor-pointer bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-lg">
+                        <button type="button"
+                                @click="$refs.fileInput.setAttribute('capture', 'environment'); $refs.fileInput.click()"
+                                class="cursor-pointer bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-lg">
                             📷 Buka Kamera
-                            <input type="file" name="foto_sesudah" accept="image/*" capture="environment"
-                                   class="hidden" x-ref="evidenceFile"
-                                   @change="preview = $event.target.files[0] ? URL.createObjectURL($event.target.files[0]) : null">
-                        </label>
-                        <label class="cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-lg">
+                        </button>
+                        <button type="button"
+                                @click="$refs.fileInput.removeAttribute('capture'); $refs.fileInput.click()"
+                                class="cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-lg">
                             🖼️ Upload Foto
-                            <input type="file" name="foto_sesudah" accept="image/*" class="hidden"
-                                   x-ref="uploadFile"
-                                   @change="preview = $event.target.files[0] ? URL.createObjectURL($event.target.files[0]) : null">
-                        </label>
+                        </button>
                     </div>
                     <p class="text-xs text-gray-400">
                         "Buka Kamera" akan langsung mengaktifkan kamera di HP. Di laptop/desktop tanpa kamera intent, tombol ini akan membuka jendela pilih file biasa — itu wajar.
@@ -230,7 +235,6 @@ document.addEventListener('DOMContentLoaded', function () {
     L.marker([lat, lng]).addTo(map)
         .bindPopup('<b>{{ $report->kode_laporan }}</b><br>{{ addslashes($report->category->nama_kategori) }}')
         .openPopup();
-    setTimeout(() => map.invalidateSize(), 300);
 });
 </script>
 @endpush

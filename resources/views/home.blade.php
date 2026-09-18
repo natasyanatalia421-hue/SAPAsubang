@@ -10,11 +10,11 @@
          x-data="{
             current: 0,
             slides: [
-                { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=85', label: 'Pesona Alam Subang' },
-                { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=85', label: 'Keindahan Alam Pegunungan' },
-                { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=85', label: 'Pantai Pondok Bali' },
-                { src: 'https://images.unsplash.com/photo-1444492417251-9c84a5fa18e0?w=1600&q=85', label: 'Agrowisata Subang' },
-                { src: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=1600&q=85', label: 'Budaya & Tradisi Subang' },
+                { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPw4z3g1Fb0oG-zczgHXoxUUzN5Q9wP-HSwS7N6wIyXQ&s=10', label: 'Pesona Alam Subang' },
+                { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTo2X6gO9m-47elRPW_U46mccEbjWipwMa6UGTemwAgw&s=10', label: 'Keindahan Alam Pegunungan' },
+                { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-ZExt61gJFfpezP8C3I-sMGBQpctgJJw7UQjwUBE4nQ&s=10', label: 'Pantai Pondok Bali' },
+                { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7kcwCaqrVr-lw0UnyHYd_3lY-ew0cPWkdE-brRMDp7w&s=10', label: 'Agrowisata Subang' },
+                { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_trxgJNYWnyv4sqJdj1mcU-ZZCQr06Wmt0UVC5L1KfQ&s=10', label: 'Budaya & Tradisi Subang' },
             ],
             init() {
                 setInterval(() => { this.current = (this.current + 1) % this.slides.length }, 4500)
@@ -234,15 +234,15 @@
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-14">
             <div class="col-span-2 sm:col-span-2 rounded-2xl overflow-hidden bg-gray-100 h-56 sm:h-64">
-                <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80"
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsMR8vC4vTDz0n5C_RfzsPBcSt_SW12uM71KkzKouAQA&s=10"
                      alt="Pemandangan Kabupaten Subang" class="w-full h-full object-cover">
             </div>
             <div class="rounded-2xl overflow-hidden bg-gray-100 h-56 sm:h-64">
-                <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=400&q=80"
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfj-K8VW0volXC3X79Qbz2S064uUHXZ12V_JB5gU3tqQ&s=10"
                      alt="Alam Subang" class="w-full h-full object-cover">
             </div>
             <div class="rounded-2xl overflow-hidden bg-gray-100 h-56 sm:h-64">
-                <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=400&q=80"
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnU0GIu_ZXgVZgky3RGLt20QGnf8_sahLCVqThM1sjHA&s=10"
                      alt="Sawah di Subang" class="w-full h-full object-cover">
             </div>
         </div>
@@ -307,17 +307,16 @@
 
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             @foreach([
-                ['nama'=>'Curug Cileat',    'cat'=>'Wisata Alam',    'icon'=>'🌊', 'ukuran'=>'600×800px'],
-                ['nama'=>'Kebun Teh Ciater','cat'=>'Agrowisata',     'icon'=>'🍃', 'ukuran'=>'600×800px'],
-                ['nama'=>'Pantai Pondok Bali','cat'=>'Wisata Pantai','icon'=>'🏖️', 'ukuran'=>'600×800px'],
-                ['nama'=>'Museum Subang',   'cat'=>'Wisata Sejarah', 'icon'=>'🏛️', 'ukuran'=>'600×800px'],
+                ['nama'=>'Curug Cileat',      'cat'=>'Wisata Alam',    'foto'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPw4z3g1Fb0oG-zczgHXoxUUzN5Q9wP-HSwS7N6wIyXQ&s=10'],
+                ['nama'=>'Kebun Teh Ciater',  'cat'=>'Agrowisata',     'foto'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7kcwCaqrVr-lw0UnyHYd_3lY-ew0cPWkdE-brRMDp7w&s=10'],
+                ['nama'=>'Pantai Pondok Bali','cat'=>'Wisata Pantai',  'foto'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-ZExt61gJFfpezP8C3I-sMGBQpctgJJw7UQjwUBE4nQ&s=10'],
+                ['nama'=>'Museum Subang',     'cat'=>'Wisata Sejarah', 'foto'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm8JOfJGlMxzxhWZzQNx5eTurqVAfaYesDRh2WXSQCaA&s=10'],
             ] as $d)
             <div class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all hover:-translate-y-1 aspect-[3/4]">
-                {{-- Slot foto destinasi — ganti div ini dengan <img src="..." alt="{{ $d['nama'] }}" class="absolute inset-0 w-full h-full object-cover"> --}}
-                <div class="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 flex flex-col items-center justify-center gap-2">
-                    <span class="text-5xl">{{ $d['icon'] }}</span>
-                    <span class="text-xs text-gray-500 font-medium">{{ $d['ukuran'] }}</span>
-                </div>
+                <img src="{{ $d['foto'] }}"
+                     alt="{{ $d['nama'] }}"
+                     loading="lazy"
+                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4">
                     <div class="flex items-center gap-1.5 mb-1">
@@ -554,10 +553,16 @@
                         <a href="{{ route('laporan.publik') }}" class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 border border-white/30 text-white font-semibold px-6 py-3 rounded-xl text-sm transition-all">Lihat Laporan</a>
                     </div>
                 </div>
+
+                {{-- Foto ilustrasi Kota Subang (ganti src bila punya foto sendiri) --}}
                 <div class="flex justify-center">
-                    <div class="w-72 h-48 bg-white/10 rounded-2xl border border-white/20 flex flex-col items-center justify-center gap-3">
-                        <div class="text-6xl">🏙️</div>
-                        <p class="text-white/50 text-xs text-center px-4">Slot Ilustrasi Kota Subang<br>800×533px</p>
+                    <div class="w-full max-w-sm aspect-[3/2] rounded-2xl overflow-hidden border border-white/30 shadow-2xl relative group">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsMR8vC4vTDz0n5C_RfzsPBcSt_SW12uM71KkzKouAQA&s=10"
+                             alt="Ilustrasi Kota Subang"
+                             loading="lazy"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                        <p class="absolute bottom-3 left-4 text-white text-xs font-semibold drop-shadow">📍 Kabupaten Subang</p>
                     </div>
                 </div>
             </div>
@@ -572,27 +577,61 @@
             <p class="text-green-600 text-xs font-bold uppercase tracking-widest mb-2">Kenali Lebih Dekat</p>
             <h2 class="text-3xl font-extrabold text-gray-900">Video Profil Kota Subang</h2>
         </div>
+
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
             @foreach([
-                ['judul'=>'Profil Kota Subang',     'sub'=>'Mengenal keindahan dan potensi Kota Subang'],
-                ['judul'=>'Festival Budaya Subang',  'sub'=>'Kekayaan budaya dan tradisi masyarakat Sunda'],
-                ['judul'=>'Wisata Alam Subang',      'sub'=>'Destinasi alam yang memukau di Kabupaten Subang'],
+                [
+                    'judul' => 'Profil Kota Subang',
+                    'sub'   => 'Mengenal keindahan dan potensi Kota Subang',
+                    'yt'    => 'U0rZBBV5yBY',
+                ],
+                [
+                    'judul' => 'Festival Budaya Subang',
+                    'sub'   => 'Kekayaan budaya dan tradisi masyarakat Sunda',
+                    'yt'    => 'rCdrXxlmeRY',
+                ],
+                [
+                    'judul' => 'Wisata Alam Subang',
+                    'sub'   => 'Destinasi alam yang memukau di Kabupaten Subang',
+                    'yt'    => 'LU4NVgfuOms',
+                ],
             ] as $v)
-            <div class="group relative bg-gray-900 rounded-2xl overflow-hidden aspect-video cursor-pointer hover:shadow-2xl transition-all">
+            <a href="https://www.youtube.com/watch?v={{ $v['yt'] }}"
+               target="_blank" rel="noopener noreferrer"
+               class="group relative bg-gray-900 rounded-2xl overflow-hidden aspect-video block hover:shadow-2xl transition-all">
+
+                {{-- Latar hijau, tampil bila thumbnail gagal dimuat --}}
                 <div class="absolute inset-0 bg-gradient-to-br from-green-900 to-green-700 flex items-center justify-center">
                     <span class="text-6xl opacity-20">🎬</span>
                 </div>
-                <div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors"></div>
+
+                {{-- Thumbnail otomatis dari YouTube --}}
+                <img src="https://img.youtube.com/vi/{{ $v['yt'] }}/hqdefault.jpg"
+                     alt="{{ $v['judul'] }}"
+                     loading="lazy"
+                     onerror="this.style.display='none'"
+                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors"></div>
+
+                {{-- Tombol play --}}
                 <div class="absolute inset-0 flex items-center justify-center">
                     <div class="w-14 h-14 bg-white/90 group-hover:bg-white rounded-full flex items-center justify-center shadow-2xl transition-all group-hover:scale-110">
-                        <svg class="w-6 h-6 text-green-700 ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
+                        <svg class="w-6 h-6 text-green-700 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                        </svg>
                     </div>
                 </div>
-                <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+
+                {{-- Judul --}}
+                <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
                     <p class="text-white font-bold text-sm">{{ $v['judul'] }}</p>
-                    <p class="text-white/60 text-xs mt-0.5">{{ $v['sub'] }}</p>
+                    <p class="text-white/70 text-xs mt-0.5">{{ $v['sub'] }}</p>
+                    <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-yellow-300 mt-1.5">
+                        ▶ Tonton di YouTube
+                    </span>
                 </div>
-            </div>
+            </a>
             @endforeach
         </div>
     </div>
@@ -603,8 +642,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="flex justify-center mb-5">
             <div class="w-14 h-14 bg-green-700 rounded-2xl flex items-center justify-center shadow-lg">
-                <img src="{{ asset('images/logo-subang.png') }}" alt="Logo" class="w-11 h-11 object-contain"
-                     onerror="this.parentElement.innerHTML='<svg viewBox=\'0 0 40 40\' class=\'w-10 h-10\'><circle cx=\'20\' cy=\'20\' r=\'18\' fill=\'white\'/><path d=\'M20 6 L22 14 L30 14 L24 19 L26 27 L20 22 L14 27 L16 19 L10 14 L18 14 Z\' fill=\'#16a34a\'/></svg>'">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI0C7APY1RPu0BH5O4dpR3vVgHiZuHWxEYmLiaDN4HXQ&s=10"
+                     alt="Logo Subang"
+                     class="w-11 h-11 object-contain">
             </div>
         </div>
         <h2 class="text-2xl font-extrabold text-white mb-2">SAPAsubang</h2>
