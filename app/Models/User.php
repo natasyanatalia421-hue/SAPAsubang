@@ -69,4 +69,12 @@ class User extends Authenticatable
     {
         return $this->notifications()->where('sudah_dibaca', false)->count();
     }
+
+    /**
+     * Override reset password notification dengan Bahasa Indonesia
+     */
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new \App\Notifications\CustomResetPassword($token));
+    }
 }

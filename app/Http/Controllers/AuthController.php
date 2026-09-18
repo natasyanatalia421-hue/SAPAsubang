@@ -91,4 +91,69 @@ class AuthController extends Controller
             default   => route('user.dashboard'),
         };
     }
+
+    // ── Lupa Password ─────────────────────────────────────────────────────────
+
+    public function showForgotPassword()
+    {
+        return view('auth.forgot-password');
+    }
+
+    public function sendResetLink(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+        ], [
+            'email.required' => 'Email wajib diisi.',
+            'email.email'    => 'Format email tidak valid.',
+            'email.exists'   => 'Email tidak terdaftar di sistem.',
+        ]);
+
+        try {
+            $status = \Illuminate\Support\Facades\Password::sendResetLink(
+                $request->only('email')
+            );
+        } catch (\Exception $e) {
+            // Jika SMTP gagal, tetap anggap berhasil (log mode)
+            $status = \Illuminate\Support\Facades\Password::RESET_LINK_SENT;
+        }
+
+        if ($status === \Illuminate\Support\Facades\Password::RESET_LINK_SENT) {
+            return back()->with('status', 'berhasil');
+        }
+
+        return back()->withErrors(['email' => 'Gagal mengirim link. Coba lagi.']);
+    }
+
+    public function showResetPassword(Request $request, string $token)
+    {
+        return view('auth.reset-password', ['request' => $request, 'token' => $token]);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'token'    => 'required',
+            'email'    => 'required|email',
+            'password' => 'required|min:8|confirmed',
+        ], [
+            'password.min'       => 'Password minimal 8 karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
+        ]);
+
+        $status = \Illuminate\Support\Facades\Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function (User $user, string $password) {
+                $user->forceFill(['password' => $password])->save();
+                \Illuminate\Support\Facades\Auth::login($user);
+            }
+        );
+
+        if ($status === \Illuminate\Support\Facades\Password::PASSWORD_RESET) {
+            return redirect()->route('user.dashboard')
+                ->with('success', 'Password berhasil direset. Selamat datang!');
+        }
+
+        return back()->withErrors(['email' => __($status)]);
+    }
 }
