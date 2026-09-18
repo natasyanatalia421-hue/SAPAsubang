@@ -131,8 +131,29 @@
                 </svg>
             </button>
             <h1 class="text-base font-semibold text-gray-800">@yield('page-title', 'Dashboard')</h1>
-            <div class="ml-auto text-sm text-gray-400 hidden sm:block">
-                @auth Halo, <strong class="text-gray-600">{{ auth()->user()->name }}</strong> @endauth
+
+            <div class="ml-auto flex items-center gap-2">
+                {{-- Nama user --}}
+                <span class="text-sm text-gray-400 hidden sm:block">
+                    Halo, <strong class="text-gray-600">{{ auth()->user()->name ?? '' }}</strong>
+                </span>
+
+                {{-- Link ke website publik --}}
+                <a href="{{ route('home') }}"
+                   class="hidden sm:flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-green-700 border border-gray-200 hover:border-green-300 px-3 py-1.5 rounded-lg transition-colors">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    Website
+                </a>
+
+                {{-- Tombol Keluar --}}
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit"
+                            class="flex items-center gap-1.5 text-xs font-semibold text-red-600 hover:text-white hover:bg-red-600 border border-red-200 hover:border-red-600 px-3 py-1.5 rounded-lg transition-all">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                        Keluar
+                    </button>
+                </form>
             </div>
         </header>
 

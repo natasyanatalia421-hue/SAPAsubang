@@ -146,7 +146,7 @@ function reportForm() {
             // Pusat peta di Indonesia jika belum ada koordinat
             const center = this.lat && this.lon
                 ? [this.lat, this.lon]
-                : [-6.9175, 107.6191]; // default: Bandung
+                : [-6.5744, 107.7599]; // default: Subang
 
             this.map = L.map('map').setView(center, this.lat ? 16 : 12);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

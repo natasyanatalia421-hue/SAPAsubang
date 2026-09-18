@@ -118,12 +118,15 @@
                     @enderror
                 </div>
 
-                <div class="flex items-center">
+                <div class="flex items-center justify-between">
                     <label class="flex items-center gap-2 cursor-pointer select-none">
                         <input type="checkbox" name="remember"
                                class="w-4 h-4 rounded border-gray-300 text-green-600 focus:ring-green-500 cursor-pointer">
                         <span class="text-sm text-gray-600">Ingat saya</span>
                     </label>
+                    <a href="{{ route('password.request') }}" class="text-sm text-green-600 hover:text-green-700 hover:underline font-medium">
+                        Lupa password?
+                    </a>
                 </div>
 
                 <button type="submit"

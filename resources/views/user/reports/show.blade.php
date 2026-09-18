@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
     L.marker([lat, lng]).addTo(map)
         .bindPopup('<b>{{ $report->kode_laporan }}</b><br>{{ $report->category->nama_kategori }}')
         .openPopup();
+    setTimeout(() => map.invalidateSize(), 300);
 });
 </script>
 @endpush

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Beranda') — Kota Subang</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css'  , 'resources/js/app.js'])
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -85,21 +85,8 @@
                 </a>
             </nav>
 
-            {{-- Kanan: search + cuaca + auth --}}
-            <div class="hidden md:flex items-center gap-3 ml-auto">
-                {{-- Search inline --}}
-                <div class="relative">
-                    <input type="text" placeholder="Cari Informasi di Kota Subang..."
-                           class="border border-gray-200 rounded-xl px-4 py-2 text-xs w-52 focus:outline-none focus:ring-2 focus:ring-green-500 pl-9 bg-gray-50">
-                    <svg class="w-3.5 h-3.5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                </div>
-                {{-- Cuaca --}}
-                <div class="flex items-center gap-1.5 text-xs text-gray-600 bg-yellow-50 border border-yellow-200 px-3 py-1.5 rounded-full">
-                    <span class="text-lg">☀️</span>
-                    <span class="font-semibold">Subang</span>
-                    <span class="text-gray-400">28°C</span>
-                </div>
-
+            {{-- Kanan: auth saja (search & cuaca dihapus) --}}
+            <div class="hidden md:flex items-center gap-2 ml-auto">
                 @auth
                 <div x-data="{open:false}" class="relative">
                     <button @click="open=!open" class="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all text-sm">
@@ -151,14 +138,6 @@
             </button>
         </div>
 
-        {{-- Search bar dropdown --}}
-        <div x-show="searchOpen" x-cloak x-transition class="pb-3">
-            <div class="relative">
-                <input type="text" placeholder="Cari informasi Kota Subang..."
-                       class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 pl-10">
-                <svg class="w-4 h-4 text-gray-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            </div>
-        </div>
     </div>
 
     {{-- Mobile menu --}}
@@ -185,11 +164,13 @@
 <footer class="bg-green-900 text-green-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-green-800">
+
             {{-- Kolom 1: Logo + alamat --}}
             <div>
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-                        <svg viewBox="0 0 40 40" class="w-8 h-8"><circle cx="20" cy="20" r="18" fill="#1a6b2f"/><path d="M20 6 L22 14 L30 14 L24 19 L26 27 L20 22 L14 27 L16 19 L10 14 L18 14 Z" fill="#f5c518"/></svg>
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+                        <img src="{{ asset('images/logo-subang.png') }}" alt="Logo" class="w-10 h-10 object-contain"
+                             onerror="this.parentElement.innerHTML='<svg viewBox=\'0 0 40 40\' class=\'w-8 h-8\'><circle cx=\'20\' cy=\'20\' r=\'18\' fill=\'#1a6b2f\'/><path d=\'M20 6 L22 14 L30 14 L24 19 L26 27 L20 22 L14 27 L16 19 L10 14 L18 14 Z\' fill=\'#f5c518\'/></svg>'">
                     </div>
                     <div>
                         <div class="text-white font-extrabold text-sm leading-none">KOTA SUBANG</div>
@@ -197,66 +178,76 @@
                     </div>
                 </div>
                 <ul class="space-y-1.5 text-xs text-green-200/80">
-                    <li class="flex gap-2">📍 Jl. Otista - Sudirman No.1, RT.002/RW.031, Sukarahayu, Kec. Tarogong, Kota Subang, Banten 1811</li>
-                    <li class="flex gap-2">📞 (0260) 411xxxx</li>
-                    <li class="flex gap-2">✉ layanan@kotasubang.go.id</li>
+                    <li class="flex gap-2 items-start"><span class="flex-shrink-0">📍</span> Kabupaten Subang, Jawa Barat</li>
+                    <li class="flex gap-2 items-start"><span class="flex-shrink-0">📞</span> (0260) 411xxxx</li>
+                    <li class="flex gap-2 items-start"><span class="flex-shrink-0">✉</span> layanan@kotasubang.go.id</li>
                 </ul>
             </div>
 
-            {{-- Kolom 2: Kanal media sosial --}}
+            {{-- Kolom 2: Sosial media resmi (link nyata) --}}
             <div>
-                <h4 class="text-white font-bold mb-4 text-sm">Kanal Informasi Resmi Lainnya</h4>
-                <ul class="space-y-2 text-xs text-green-200/80">
-                    <li class="flex items-center gap-2">
-                        <span class="w-5 h-5 bg-pink-500 rounded flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0">IG</span>
-                        @subangkota
+                <h4 class="text-white font-bold mb-4 text-sm">Kanal Informasi Resmi</h4>
+                <ul class="space-y-2.5 text-xs">
+
+                    <li>
+                        <a href="https://www.instagram.com/kotasubang/" target="_blank" rel="noopener"
+                           class="flex items-center gap-2.5 text-green-200/80 hover:text-white transition-colors group">
+                            <span class="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform"
+                                  style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
+                                <svg class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </span>
+                            @kotasubang
+                        </a>
                     </li>
-                    <li class="flex items-center gap-2">
-                        <span class="w-5 h-5 bg-blue-600 rounded flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0">fb</span>
-                        Pemerintah Kota Subang
+
+                    <li>
+                        <a href="https://www.facebook.com/ForumSubang/" target="_blank" rel="noopener"
+                           class="flex items-center gap-2.5 text-green-200/80 hover:text-white transition-colors group">
+                            <span class="w-6 h-6 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform">
+                                <svg class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            </span>
+                            Pemerintah Kota Subang
+                        </a>
                     </li>
-                    <li class="flex items-center gap-2">
-                        <span class="w-5 h-5 bg-sky-400 rounded flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0">TW</span>
-                        @KotaSubang
+
+                    <li>
+                        <a href="https://www.youtube.com/@kota_subang" target="_blank" rel="noopener"
+                           class="flex items-center gap-2.5 text-green-200/80 hover:text-white transition-colors group">
+                            <span class="w-6 h-6 bg-red-600 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform">
+                                <svg class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            </span>
+                            Kota Subang
+                        </a>
                     </li>
-                    <li class="flex items-center gap-2">
-                        <span class="w-5 h-5 bg-red-500 rounded flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0">▶</span>
-                        Kota Subang
+
+                    <li>
+                        <a href="https://www.tiktok.com/@kota_subang" target="_blank" rel="noopener"
+                           class="flex items-center gap-2.5 text-green-200/80 hover:text-white transition-colors group">
+                            <span class="w-6 h-6 bg-gray-900 border border-gray-600 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform">
+                                <svg class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                            </span>
+                            @kota_subang
+                        </a>
                     </li>
-                    <li class="flex items-center gap-2">
-                        <span class="w-5 h-5 bg-gray-600 rounded flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0">TV</span>
-                        Tangerang TV
-                    </li>
+
                 </ul>
             </div>
 
-            {{-- Kolom 3: Statistik --}}
-            <div>
-                <h4 class="text-white font-bold mb-4 text-sm">Pengunjung</h4>
-                <ul class="space-y-2 text-xs text-green-200/80">
-                    <li class="flex justify-between"><span>Pengunjung hari ini</span><span class="text-white font-semibold">{{ rand(100,999) }}</span></li>
-                    <li class="flex justify-between"><span>Pengunjung online</span><span class="text-white font-semibold">{{ rand(10,99) }}</span></li>
-                    <li class="flex justify-between"><span>Total pengunjung</span><span class="text-white font-semibold">{{ number_format(rand(8000000,12000000)) }}</span></li>
-                </ul>
-            </div>
-
-            {{-- Kolom 4: Superapp --}}
+            {{-- Kolom 4: Tentang SAPAsubang --}}
             <div>
                 <h4 class="text-white font-bold mb-4 text-sm">SAPAsubang</h4>
-                <p class="text-xs text-green-200/80 mb-3">Sistem Aduan & Pelaporan Aspirasi Subang</p>
-                <div class="flex flex-col gap-2">
-                    <a href="#" class="flex items-center gap-2 bg-black/30 hover:bg-black/50 border border-green-700 text-white px-3 py-2 rounded-xl transition-colors">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.42c1.27.07 2.13.73 2.87.75.87-.12 1.7-.8 3.04-.75 2.04.13 3.23 1.03 3.96 2.59-3.5 2.03-2.91 6.53.86 7.75-.18.58-.42 1.17-.73 1.52zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-                        <div><div class="text-[9px] text-green-300">Download di</div><div class="text-xs font-bold">App Store</div></div>
-                    </a>
-                    <a href="#" class="flex items-center gap-2 bg-black/30 hover:bg-black/50 border border-green-700 text-white px-3 py-2 rounded-xl transition-colors">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.35.2.74.24 1.12.14l12.3-7.1-2.58-2.59-10.84 9.55zM20.48 10.5L17.4 8.7l-2.91 2.9 2.92 2.92 3.1-1.8c.88-.5.88-1.72-.03-2.22zM2.08 1.23C2.03 1.42 2 1.64 2 1.88V22.1c0 .25.04.47.1.67l.11.1 11.19-11.2v-.26L2.19 1.12l-.11.11z"/></svg>
-                        <div><div class="text-[9px] text-green-300">Download di</div><div class="text-xs font-bold">Google Play</div></div>
-                    </a>
+                <p class="text-xs text-green-200/70 leading-relaxed">Sistem Aduan & Pelaporan Aspirasi Subang. Laporkan masalah fasilitas umum Kota Subang dengan mudah dan cepat.</p>
+                <div class="mt-4 space-y-1.5 text-xs text-green-200/70">
+                    <a href="{{ route('laporan.publik') }}" class="flex items-center gap-2 hover:text-white transition-colors">→ Buat Laporan</a>
+                    <a href="{{ route('panduan') }}" class="flex items-center gap-2 hover:text-white transition-colors">→ Panduan Pelaporan</a>
+                    <a href="{{ route('berita') }}" class="flex items-center gap-2 hover:text-white transition-colors">→ Berita Terkini</a>
                 </div>
             </div>
+
         </div>
-        <div class="pt-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-green-300/70">
+
+        {{-- Bottom bar --}}
+        <div class="pt-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-green-300/70">
             <span>© {{ date('Y') }} Pemerintah Kabupaten Subang. All rights reserved.</span>
             <span>SAPAsubang — Sistem Aduan & Pelaporan Aspirasi Subang</span>
         </div>

@@ -21,6 +21,7 @@ Route::get('/wisata',     [PublicController::class, 'wisata'])->name('wisata');
 Route::get('/berita',     [PublicController::class, 'berita'])->name('berita');
 Route::get('/berita/{slug}', [PublicController::class, 'beritaShow'])->name('berita.show');
 Route::get('/laporan',    [PublicController::class, 'laporanPublik'])->name('laporan.publik');
+Route::get('/panduan',    [PublicController::class, 'panduan'])->name('panduan');
 
 // ── Autentikasi ────────────────────────────────────────────────────────────────
 Route::middleware('guest')->group(function () {
@@ -32,6 +33,12 @@ Route::middleware('guest')->group(function () {
     // Google OAuth
     Route::get('/auth/google',          [SocialAuthController::class, 'redirectToGoogle'])->name('auth.google');
     Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
+
+    // Lupa & reset password
+    Route::get('/lupa-password',         [AuthController::class, 'showForgotPassword'])->name('password.request');
+    Route::post('/lupa-password',        [AuthController::class, 'sendResetLink'])->name('password.email');
+    Route::get('/reset-password/{token}',[AuthController::class, 'showResetPassword'])->name('password.reset');
+    Route::post('/reset-password',       [AuthController::class, 'resetPassword'])->name('password.store');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');

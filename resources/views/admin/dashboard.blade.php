@@ -133,7 +133,7 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const map = L.map('admin-map').setView([-6.9175, 107.6191], 13);
+    const map = L.map('admin-map').setView([-6.5744, 107.7599], 11);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
 
     const statusColors = {

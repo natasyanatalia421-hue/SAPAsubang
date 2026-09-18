@@ -166,6 +166,12 @@ class PublicController extends Controller
         return view('wisata');
     }
 
+    // ── PANDUAN ───────────────────────────────────────────────────────────────
+    public function panduan()
+    {
+        return view('panduan');
+    }
+
     // ── BERITA INDEX ──────────────────────────────────────────────────────────
     public function berita()
     {
