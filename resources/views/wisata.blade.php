@@ -14,6 +14,11 @@
             'nama'  => 'Curug Cijalu',
             'cat'   => 'Wisata Alam',
             'foto'  => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwdYyBZ8K3vOWUGiLz6FCNDlvDiC-xi975Aeer4Kz1Ow&s=10',
+            'fotos' => [
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwdYyBZ8K3vOWUGiLz6FCNDlvDiC-xi975Aeer4Kz1Ow&s=10',
+                'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+                'https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=800&q=80',
+            ],
             'desc'  => 'Air terjun alami yang memukau di tengah hutan Subang.',
             'detail'=> 'Curug Cijalu merupakan air terjun setinggi kurang lebih 70 meter yang berada di kawasan hutan lindung Gunung Sunda. Udara sejuk, jalur trekking yang rindang, dan area perkemahan membuatnya populer bagi pecinta alam.',
             'alamat'=> 'Desa Cipancar, Kec. Serangpanjang, Kab. Subang',
@@ -27,6 +32,11 @@
             'nama'  => 'Kebun Teh Ciater',
             'cat'   => 'Agrowisata',
             'foto'  => 'https://cdn-jpr.jawapos.com/images/43/2026/05/09/wisata-kebun-teh-ciater-subang-viral-karena-hidden-gem-gratis-cafe-instagramable-camping-murah-dan-panorama-alam-memukau-pinterestcom-q9cxe.webp',
+            'fotos' => [
+                'https://cdn-jpr.jawapos.com/images/43/2026/05/09/wisata-kebun-teh-ciater-subang-viral-karena-hidden-gem-gratis-cafe-instagramable-camping-murah-dan-panorama-alam-memukau-pinterestcom-q9cxe.webp',
+                'https://images.unsplash.com/photo-1444492417251-9c84a5fa18e0?w=800&q=80',
+                'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+            ],
             'desc'  => 'Hamparan kebun teh hijau yang menyejukkan mata.',
             'detail'=> 'Hamparan kebun teh di lereng Gunung Tangkuban Perahu dengan jalan setapak di antara barisan tanaman teh. Waktu terbaik berkunjung adalah pagi hari saat kabut masih turun.',
             'alamat'=> 'Ciater, Kec. Ciater, Kab. Subang',
@@ -40,6 +50,11 @@
             'nama'  => 'Pantai Pondok Bali',
             'cat'   => 'Wisata Pantai',
             'foto'  => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1MAoPDC-jSvku6mBRTvkxTaFABiyDmc3uhqIGfG5OYg&s=10',
+            'fotos' => [
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1MAoPDC-jSvku6mBRTvkxTaFABiyDmc3uhqIGfG5OYg&s=10',
+                'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+                'https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?w=800&q=80',
+            ],
             'desc'  => 'Pantai dengan pemandangan laut yang indah di utara Subang.',
             'detail'=> 'Pantai di pesisir utara Subang dengan garis pantai landai dan perahu nelayan yang bersandar. Cocok untuk menikmati matahari terbenam dan kuliner hasil laut segar.',
             'alamat'=> 'Desa Mayangan, Kec. Legonkulon, Kab. Subang',
@@ -53,6 +68,10 @@
             'nama'  => 'Kawah DomasTangkuban Perahu',
             'cat'   => 'Wisata Alam',
             'foto'  => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5COzDB5S-0IL1iQiTHKbMPqZw9fgFqnPmmAdX7pXSQA&s=10',
+            'fotos' => [
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5COzDB5S-0IL1iQiTHKbMPqZw9fgFqnPmmAdX7pXSQA&s=10',
+                'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=800&q=80',
+            ],
             'desc'  => 'Pemandian air panas alami dari sumber belerang.',
             'detail'=> 'Sumber air panas belerang yang mengalir dari kawah Gunung Tangkuban Perahu. Air hangatnya dipercaya membantu meredakan pegal dan menyehatkan kulit.',
             'alamat'=> 'Ciater, Kec. Ciater, Kab. Subang',
@@ -66,6 +85,10 @@
             'nama'  => 'Bukit Strawberry',
             'cat'   => 'Wisata Edukasi',
             'foto'  => 'https://assets-a1.kompasiana.com/items/album/2017/01/31/bukit-kebun-wisata-strawberry-malang-indonesia-www-selamethariadi-com-2-588fe211a3afbd36048b4569.jpg',
+            'fotos' => [
+                'https://assets-a1.kompasiana.com/items/album/2017/01/31/bukit-kebun-wisata-strawberry-malang-indonesia-www-selamethariadi-com-2-588fe211a3afbd36048b4569.jpg',
+                'https://images.unsplash.com/photo-1543158181-e6f9f6712055?w=800&q=80',
+            ],
             'desc'  => 'Perkebunan strawberry sebagai destinasi edukasi keluarga.',
             'detail'=> 'Kebun strawberry yang dibuka untuk umum dengan program edukasi penanaman, perawatan, hingga panen buah. Pengunjung bisa memetik strawberry langsung dari tanamannya.',
             'alamat'=> 'Kab. Subang, Jawa Barat',
@@ -79,6 +102,11 @@
             'nama'  => 'Sari Ater Resort',
             'cat'   => 'Wisata Keluarga',
             'foto'  => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTloeVToSpHRfLgScECKtXBGx2anqljv8WNJMEqgJ5r7A&s=10',
+            'fotos' => [
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTloeVToSpHRfLgScECKtXBGx2anqljv8WNJMEqgJ5r7A&s=10',
+                'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&q=80',
+                'https://images.unsplash.com/photo-1556909114-44e3e70034e2?w=800&q=80',
+            ],
             'desc'  => 'Resort pemandian air panas keluarga paling populer.',
             'detail'=> 'Kawasan wisata terpadu dengan kolam air panas, penginapan, wahana outbound, dan area bermain anak. Salah satu destinasi paling ramai di Subang saat akhir pekan.',
             'alamat'=> 'Jl. Raya Ciater, Kec. Ciater, Kab. Subang',
@@ -92,6 +120,10 @@
             'nama'  => 'Museum Subang',
             'cat'   => 'Wisata Sejarah',
             'foto'  => 'https://lh3.googleusercontent.com/grass-cs/ACvplmNFtQRydI8Pq6V39AmsJCo8FljXsWYmkHjoZQFgQwU5rXF19ARcQaJhsikZuji1v3NCjAujaim73wD70D2MIzJoEXhUX9-k7xJTW45yZfM18emUQhf6IbVoo3qAtyqCH4cGT-fj2A=w326-h312-n-k-no',
+            'fotos' => [
+                'https://lh3.googleusercontent.com/grass-cs/ACvplmNFtQRydI8Pq6V39AmsJCo8FljXsWYmkHjoZQFgQwU5rXF19ARcQaJhsikZuji1v3NCjAujaim73wD70D2MIzJoEXhUX9-k7xJTW45yZfM18emUQhf6IbVoo3qAtyqCH4cGT-fj2A=w326-h312-n-k-no',
+                'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80',
+            ],
             'desc'  => 'Menyimpan koleksi sejarah perjuangan rakyat Subang.',
             'detail'=> 'Museum daerah yang menyimpan koleksi benda bersejarah, dokumentasi masa kolonial, serta jejak perjuangan rakyat Subang. Cocok untuk kunjungan sekolah dan penelitian.',
             'alamat'=> 'Jl. Kapten Hanafiah, Kec. Subang, Kab. Subang',
@@ -105,6 +137,11 @@
             'nama'  => 'Hutan Pinus Cikole',
             'cat'   => 'Wisata Alam',
             'foto'  => 'https://lh3.googleusercontent.com/grass-cs/ACvplmOpoCF-bKiPyv-DcsmYxvv-OYF_gO9A_OpqGygCT_vcgbiQ9Gw2zotgW1Vw4jelEpgqgCEyt6iN-LPsBaTgmGL4Z03XEuDCKZvdqAG3-x23uZxTppr4ZLzBwwCvQ52ZtkLZR2IX=w326-h312-n-k-no',
+            'fotos' => [
+                'https://lh3.googleusercontent.com/grass-cs/ACvplmOpoCF-bKiPyv-DcsmYxvv-OYF_gO9A_OpqGygCT_vcgbiQ9Gw2zotgW1Vw4jelEpgqgCEyt6iN-LPsBaTgmGL4Z03XEuDCKZvdqAG3-x23uZxTppr4ZLzBwwCvQ52ZtkLZR2IX=w326-h312-n-k-no',
+                'https://images.unsplash.com/photo-1511497584788-876760111969?w=800&q=80',
+                'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80',
+            ],
             'desc'  => 'Hutan pinus yang sejuk cocok untuk berkemah dan piknik.',
             'detail'=> 'Kawasan hutan pinus dengan udara dingin dan barisan pohon tinggi yang rapi. Tersedia area berkemah, jalur jalan kaki, dan beragam spot foto di antara pepohonan.',
             'alamat'=> 'Cikole, Lembang - perbatasan Subang',
@@ -173,26 +210,56 @@
 
 {{-- Modal detail --}}
 <div id="modalWisata"
-     class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+     class="fixed inset-0 z-50 hidden items-center justify-center"
+     style="padding:1rem;"
      role="dialog" aria-modal="true" aria-labelledby="mwNama">
 
     <div class="absolute inset-0 bg-gray-900/60 backdrop-blur-sm" onclick="tutupDetailWisata()"></div>
 
-    <div class="relative bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl">
+    {{-- Kontainer modal: scroll di dalam, tidak terpotong --}}
+    <div class="relative bg-white w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col"
+         style="max-height:90vh;">
 
-        <div class="relative h-56 bg-gray-100">
-            <img id="mwFoto" src="" alt="" class="w-full h-full object-cover">
-            <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/50 to-transparent"></div>
+        {{-- Foto — slideshow geser dengan panah kiri/kanan --}}
+        <div class="relative flex-shrink-0 bg-gray-100 rounded-t-2xl overflow-hidden" style="height:240px;">
 
+            {{-- Container foto --}}
+            <div id="mwSlides" class="flex h-full transition-transform duration-400 ease-in-out" style="will-change:transform;">
+                {{-- Foto diisi JS --}}
+            </div>
+
+            {{-- Tombol tutup --}}
             <button type="button" onclick="tutupDetailWisata()" aria-label="Tutup"
-                    class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-gray-600 shadow flex items-center justify-center transition">
+                    class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-gray-600 shadow flex items-center justify-center transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
 
-            <span id="mwCat" class="absolute bottom-3 left-5 text-[11px] font-bold text-white bg-green-600/90 px-3 py-1 rounded-full"></span>
+            {{-- Panah kiri --}}
+            <button type="button" onclick="geserFoto(-1)" aria-label="Sebelumnya"
+                    id="mwPrev"
+                    class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 text-white shadow flex items-center justify-center transition hidden">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+
+            {{-- Panah kanan --}}
+            <button type="button" onclick="geserFoto(1)" aria-label="Berikutnya"
+                    id="mwNext"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 text-white shadow flex items-center justify-center transition hidden">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+
+            {{-- Dots --}}
+            <div id="mwDots" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10"></div>
+
+            {{-- Badge kategori --}}
+            <span id="mwCat" class="absolute bottom-3 left-4 text-[11px] font-bold text-white bg-green-600/90 px-3 py-1 rounded-full z-10"></span>
+
+            {{-- Counter foto --}}
+            <span id="mwCounter" class="absolute top-3 left-3 text-[11px] font-bold text-white bg-black/40 px-2.5 py-1 rounded-full z-10 hidden"></span>
         </div>
 
-        <div class="p-6">
+        {{-- Konten — scrollable --}}
+        <div class="overflow-y-auto flex-1 p-6">
             <h3 id="mwNama" class="text-2xl font-extrabold text-gray-900 mb-2"></h3>
             <p id="mwDetail" class="text-sm text-gray-600 leading-relaxed mb-6"></p>
 
@@ -214,32 +281,75 @@
             <p class="text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-2">Fasilitas</p>
             <div id="mwFasilitas" class="flex flex-wrap gap-2 mb-7"></div>
 
-            <a id="mwMaps" href="#" target="_blank" rel="noopener"
-               class="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-green-700 hover:bg-green-800 text-white font-bold px-6 py-3 rounded-full text-sm transition-all">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
-                Buka di Google Maps
-            </a>
+            <div class="flex gap-3 flex-wrap">
+                <a id="mwMaps" href="#" target="_blank" rel="noopener"
+                   class="inline-flex items-center justify-center gap-2 bg-green-700 hover:bg-green-800 text-white font-bold px-6 py-3 rounded-full text-sm transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    Buka di Google Maps
+                </a>
+                <button onclick="tutupDetailWisata()"
+                        class="inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-6 py-3 rounded-full text-sm transition-all">
+                    Tutup
+                </button>
+            </div>
+
+            {{-- Padding bawah agar konten tidak mepet --}}
+            <div class="h-4"></div>
         </div>
     </div>
 </div>
 
 @push('scripts')
 <script>
-    const dataWisata  = @json(collect($wisata)->keyBy('slug'));
+    const dataWisata   = @json(collect($wisata)->keyBy('slug'));
     const fotoCadangan = @json($fotoFallback);
+
+    let fotoAktif = 0;
+    let fotosAktif = [];
 
     function bukaDetailWisata(slug) {
         const w = dataWisata[slug];
         if (!w) return;
 
-        const foto = document.getElementById('mwFoto');
-        foto.src     = w.foto || fotoCadangan;
-        foto.alt     = w.nama;
-        foto.onerror = function () { this.onerror = null; this.src = fotoCadangan; };
+        // Reset slideshow
+        fotoAktif  = 0;
+        fotosAktif = (w.fotos && w.fotos.length > 0) ? w.fotos : [w.foto || fotoCadangan];
 
+        // Render slides — setiap slide selebar container
+        const slidesEl = document.getElementById('mwSlides');
+        slidesEl.style.transform  = 'translateX(0)';
+        slidesEl.style.transition = 'none';
+        slidesEl.style.display    = 'flex';
+        slidesEl.style.width      = '100%';
+        slidesEl.innerHTML = fotosAktif.map(src =>
+            '<div style="flex-shrink:0;width:100%;height:100%;">' +
+            '<img src="' + src + '" alt="" style="width:100%;height:100%;object-fit:cover;" ' +
+            'onerror="this.src=\'' + fotoCadangan + '\'">' +
+            '</div>'
+        ).join('');
+
+        // Dots
+        const dotsEl = document.getElementById('mwDots');
+        if (fotosAktif.length > 1) {
+            dotsEl.innerHTML = fotosAktif.map((_, i) =>
+                '<button onclick="pindahFoto(' + i + ')" class="rounded-full transition-all duration-300 ' +
+                (i === 0 ? 'w-5 h-2 bg-yellow-400' : 'w-2 h-2 bg-white/60') + '" id="dot' + i + '"></button>'
+            ).join('');
+            document.getElementById('mwPrev').classList.remove('hidden');
+            document.getElementById('mwNext').classList.remove('hidden');
+            document.getElementById('mwCounter').classList.remove('hidden');
+            updateCounter();
+        } else {
+            dotsEl.innerHTML = '';
+            document.getElementById('mwPrev').classList.add('hidden');
+            document.getElementById('mwNext').classList.add('hidden');
+            document.getElementById('mwCounter').classList.add('hidden');
+        }
+
+        // Konten
         document.getElementById('mwNama').textContent   = w.nama;
         document.getElementById('mwCat').textContent    = w.cat;
         document.getElementById('mwDetail').textContent = w.detail;
@@ -254,10 +364,37 @@
         document.getElementById('mwMaps').href =
             'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(w.maps);
 
+        // Tampilkan modal
         const modal = document.getElementById('modalWisata');
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         document.body.style.overflow = 'hidden';
+    }
+
+    function pindahFoto(idx) {
+        fotoAktif = idx;
+        const slidesEl = document.getElementById('mwSlides');
+        // Geser menggunakan translateX berdasarkan lebar wrapper
+        const wrapper = slidesEl.parentElement;
+        const lebarSatu = wrapper.offsetWidth;
+        slidesEl.style.transition = 'transform 0.4s ease';
+        slidesEl.style.transform  = 'translateX(-' + (fotoAktif * lebarSatu) + 'px)';
+        // Update dots
+        document.querySelectorAll('#mwDots button').forEach((d, i) => {
+            d.className = 'rounded-full transition-all duration-300 ' +
+                (i === fotoAktif ? 'w-5 h-2 bg-yellow-400' : 'w-2 h-2 bg-white/60');
+        });
+        updateCounter();
+    }
+
+    function geserFoto(arah) {
+        fotoAktif = (fotoAktif + arah + fotosAktif.length) % fotosAktif.length;
+        pindahFoto(fotoAktif);
+    }
+
+    function updateCounter() {
+        const el = document.getElementById('mwCounter');
+        if (el) el.textContent = (fotoAktif + 1) + ' / ' + fotosAktif.length;
     }
 
     function tutupDetailWisata() {
@@ -269,6 +406,8 @@
 
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') tutupDetailWisata();
+        if (e.key === 'ArrowLeft')  geserFoto(-1);
+        if (e.key === 'ArrowRight') geserFoto(1);
     });
 </script>
 @endpush

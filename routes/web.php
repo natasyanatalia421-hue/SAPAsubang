@@ -18,8 +18,6 @@ use App\Http\Controllers\SocialAuthController;
 Route::get('/',           [PublicController::class, 'home'])->name('home');
 Route::get('/tentang',    [PublicController::class, 'tentang'])->name('tentang');
 Route::get('/wisata',     [PublicController::class, 'wisata'])->name('wisata');
-Route::get('/berita',     [PublicController::class, 'berita'])->name('berita');
-Route::get('/berita/{slug}', [PublicController::class, 'beritaShow'])->name('berita.show');
 Route::get('/laporan',    [PublicController::class, 'laporanPublik'])->name('laporan.publik');
 Route::get('/panduan',    [PublicController::class, 'panduan'])->name('panduan');
 

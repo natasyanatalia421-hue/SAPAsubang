@@ -3,206 +3,206 @@
 
 @section('content')
 
+<style>
+    @keyframes homeSlideShow {
+        0%, 20% { opacity: 1; }
+        25%, 95% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    .home-slide {
+        opacity: 0;
+        animation: homeSlideShow 20s infinite;
+    }
+</style>
+
 {{-- ══════════════════════════════════════════════
-     HERO — SLIDESHOW FOTO PENUH (seperti JSC)
+     HERO — LAYOUT SPLIT PERSIS SEPERTI DESAIN
 ══════════════════════════════════════════════ --}}
-<section class="relative overflow-hidden bg-black" style="height:calc(100vh - 64px);"
-         x-data="{
-            current: 0,
-            slides: [
-                { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPw4z3g1Fb0oG-zczgHXoxUUzN5Q9wP-HSwS7N6wIyXQ&s=10', label: 'Pesona Alam Subang' },
-                { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTo2X6gO9m-47elRPW_U46mccEbjWipwMa6UGTemwAgw&s=10', label: 'Keindahan Alam Pegunungan' },
-                { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-ZExt61gJFfpezP8C3I-sMGBQpctgJJw7UQjwUBE4nQ&s=10', label: 'Pantai Pondok Bali' },
-                { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7kcwCaqrVr-lw0UnyHYd_3lY-ew0cPWkdE-brRMDp7w&s=10', label: 'Agrowisata Subang' },
-                { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_trxgJNYWnyv4sqJdj1mcU-ZZCQr06Wmt0UVC5L1KfQ&s=10', label: 'Budaya & Tradisi Subang' },
-            ],
-            init() {
-                setInterval(() => { this.current = (this.current + 1) % this.slides.length }, 4500)
-            }
-         }"
-         x-init="init()">
+<section class="relative overflow-hidden" x-data="{
+    current: 0,
+    slides: [
+        '{{ asset('images/bc2.jpeg') }}',
+        '{{ asset('images/bc.jpeg') }}',
+        '{{ asset('images/bc1.jpeg') }}',
+        '{{ asset('images/bc3.jpeg') }}',
+    ],
+    init() { setInterval(() => { this.current = (this.current + 1) % this.slides.length }, 5000) }
+}" x-init="init()">
 
-    {{-- ── Slides ── --}}
-    <template x-for="(slide, i) in slides" :key="i">
-        <div class="absolute inset-0 transition-opacity duration-1000"
-             :class="current === i ? 'opacity-100' : 'opacity-0'">
-            <img :src="slide.src" alt="" class="w-full h-full object-cover scale-105"
-                 style="animation: kenburns 8s ease-in-out infinite alternate;"
-                 :style="current === i ? 'transform:scale(1.08)' : 'transform:scale(1)'">
+    {{-- ── FOTO BACKGROUND PENUH ── --}}
+    @foreach([
+        asset('images/bc2.jpeg'),
+        asset('images/bc.jpeg'),
+        asset('images/bc1.jpeg'),
+        asset('images/bc3.jpeg'),
+    ] as $slideIndex => $slide)
+           <div class="home-slide absolute inset-0 z-0"
+               style="animation-delay: -{{ $slideIndex * 5 }}s;">
+            <img src="{{ $slide }}?v=20260920" alt="Subang" class="h-full w-full object-cover" loading="eager">
         </div>
-    </template>
+    @endforeach
 
-    {{-- Overlay gradien --}}
-    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
+    {{-- Overlay gradien agar teks terbaca --}}
+    <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-black/20 z-[1]"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-[1]"></div>
 
-    {{-- ── Daun kiri ── --}}
-    <div class="absolute left-0 top-0 bottom-0 w-40 pointer-events-none select-none z-10">
-        <svg viewBox="0 0 160 700" class="w-full h-full">
-            <ellipse cx="15"  cy="80"  rx="65" ry="95"  fill="#15803d" transform="rotate(-22 15 80)"   opacity=".9"/>
-            <ellipse cx="8"   cy="250" rx="52" ry="80"  fill="#16a34a" transform="rotate(16 8 250)"    opacity=".75"/>
-            <ellipse cx="35"  cy="430" rx="58" ry="88"  fill="#14532d" transform="rotate(-14 35 430)"  opacity=".85"/>
-            <ellipse cx="10"  cy="590" rx="45" ry="68"  fill="#15803d" transform="rotate(20 10 590)"   opacity=".70"/>
-            <ellipse cx="25"  cy="700" rx="40" ry="55"  fill="#166534" transform="rotate(-8 25 700)"   opacity=".65"/>
-            {{-- Bunga kecil --}}
-            <circle cx="55" cy="620" r="12" fill="white" opacity=".6"/>
-            <circle cx="55" cy="620" r="6"  fill="#fde68a" opacity=".8"/>
+    {{-- Dekorasi daun kiri (latar belakang) --}}
+    <div class="absolute left-0 top-0 bottom-0 w-48 pointer-events-none select-none z-10 opacity-90">
+        <svg viewBox="0 0 180 600" class="w-full h-full">
+            <ellipse cx="20"  cy="80"  rx="75" ry="100" fill="#15803d" transform="rotate(-20 20 80)"   opacity=".95"/>
+            <ellipse cx="10"  cy="240" rx="60" ry="90"  fill="#16a34a" transform="rotate(15 10 240)"   opacity=".80"/>
+            <ellipse cx="40"  cy="420" rx="65" ry="95"  fill="#14532d" transform="rotate(-12 40 420)"  opacity=".90"/>
+            <ellipse cx="15"  cy="580" rx="50" ry="75"  fill="#15803d" transform="rotate(18 15 580)"   opacity=".75"/>
+            <circle cx="70" cy="540" r="18" fill="white" opacity=".7"/>
+            <circle cx="70" cy="540" r="9"  fill="#fde68a" opacity=".9"/>
+            <circle cx="50" cy="200" r="10" fill="white" opacity=".5"/>
+            <circle cx="50" cy="200" r="5"  fill="#bbf7d0" opacity=".7"/>
         </svg>
     </div>
 
-    {{-- ── Daun kanan ── --}}
-    <div class="absolute right-0 top-0 bottom-0 w-36 pointer-events-none select-none z-10">
-        <svg viewBox="0 0 145 700" class="w-full h-full">
-            <ellipse cx="130" cy="100" rx="60" ry="90"  fill="#15803d" transform="rotate(26 130 100)"  opacity=".85"/>
-            <ellipse cx="140" cy="280" rx="48" ry="75"  fill="#16a34a" transform="rotate(-20 140 280)" opacity=".75"/>
-            <ellipse cx="120" cy="470" rx="55" ry="82"  fill="#14532d" transform="rotate(18 120 470)"  opacity=".80"/>
-            <ellipse cx="135" cy="640" rx="42" ry="62"  fill="#166534" transform="rotate(-12 135 640)" opacity=".65"/>
-            {{-- Daun kecil --}}
-            <ellipse cx="100" cy="200" rx="28" ry="42"  fill="#4ade80" transform="rotate(-30 100 200)" opacity=".5"/>
+    {{-- Dekorasi daun kanan --}}
+    <div class="absolute right-0 top-0 bottom-0 w-16 pointer-events-none select-none z-10 opacity-80">
+        <svg viewBox="0 0 70 600" class="w-full h-full">
+            <ellipse cx="60" cy="150" rx="45" ry="70" fill="#15803d" transform="rotate(20 60 150)" opacity=".8"/>
+            <ellipse cx="65" cy="380" rx="38" ry="58" fill="#16a34a" transform="rotate(-15 65 380)" opacity=".7"/>
         </svg>
     </div>
 
-    {{-- ── Konten utama ── --}}
-    <div class="relative z-20 flex flex-col h-full">
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch min-h-[460px]">
 
-        {{-- Label kanan atas --}}
-        <div class="absolute top-8 right-20 hidden lg:block text-right">
-            <p class="text-white font-black text-xl leading-snug"
-               style="text-shadow:2px 2px 8px rgba(0,0,0,.9);">Alamnya Indah</p>
-            <p class="text-yellow-300 font-black text-xl leading-snug"
-               style="text-shadow:2px 2px 8px rgba(0,0,0,.9);">Budayanya Kaya</p>
-            <p class="text-white font-black text-xl leading-snug"
-               style="text-shadow:2px 2px 8px rgba(0,0,0,.9);">Wisatanya Memikat</p>
-            {{-- Daun kecil dekorasi --}}
-            <div class="mt-1 flex justify-end">
-                <svg viewBox="0 0 40 30" class="w-10 h-8">
-                    <ellipse cx="20" cy="15" rx="18" ry="12" fill="#4ade80" transform="rotate(-20 20 15)" opacity=".8"/>
-                </svg>
-            </div>
-        </div>
-
-        {{-- Teks hero kiri tengah --}}
-        <div class="flex-1 flex items-center px-8 sm:px-14 lg:px-20">
-            <div class="max-w-2xl">
-                <p class="text-yellow-300 font-bold text-xl italic mb-2 drop-shadow-lg"
-                   style="text-shadow:1px 1px 8px rgba(0,0,0,.8);">
-                    Selamat Datang di
+            {{-- KIRI: Teks --}}
+            <div class="flex flex-col justify-center py-10 pr-0 lg:pr-8">
+                <p class="text-yellow-400 font-bold text-base italic mb-3">
+                    — Selamat Datang di
                 </p>
-                <h1 class="font-black text-white leading-none mb-4"
-                    style="font-size:clamp(3.5rem,9vw,7rem);text-shadow:3px 3px 16px rgba(0,0,0,.9);font-family:'Plus Jakarta Sans',sans-serif;">
-                    Kota Subang
-                </h1>
-                {{-- Badge kuning --}}
-                <div class="inline-flex items-center bg-yellow-400 text-yellow-900 font-black px-5 py-2 rounded-full text-sm mb-8 shadow-2xl">
-                    🌿 Pesona Kota Subang
+                <div class="mb-2">
+                    <p class="font-black text-white leading-tight" style="font-size:clamp(1.4rem,3vw,2rem);text-shadow:1px 1px 4px rgba(0,0,0,.5);">Alamnya Indah</p>
+                    <p class="font-black leading-tight" style="font-size:clamp(1.4rem,3vw,2rem);color:#4ade80;text-shadow:1px 1px 4px rgba(0,0,0,.5);">Budayanya Kaya</p>
+                    <p class="font-black text-white leading-tight" style="font-size:clamp(1.4rem,3vw,2rem);text-shadow:1px 1px 4px rgba(0,0,0,.5);">Wisatanya Memikat</p>
                 </div>
-                <div class="flex flex-wrap gap-3">
+                <h1 class="font-black text-white leading-none mb-1 flex items-end gap-2"
+                    style="font-size:clamp(3.5rem,7vw,5.5rem);text-shadow:2px 2px 8px rgba(0,0,0,.7);">
+                    Kota
+                    <svg class="w-7 h-7 mb-2 flex-shrink-0" viewBox="0 0 30 30"><ellipse cx="15" cy="15" rx="13" ry="10" fill="#16a34a" transform="rotate(-30 15 15)"/><ellipse cx="18" cy="12" rx="8" ry="5" fill="#4ade80" transform="rotate(-20 18 12)"/></svg>
+                </h1>
+                <h1 class="font-black text-white leading-none mb-6"
+                    style="font-size:clamp(3.5rem,7vw,5.5rem);text-shadow:2px 2px 8px rgba(0,0,0,.7);">
+                    Subang
+                    <svg class="w-7 h-7 inline mb-1 ml-1" viewBox="0 0 30 30"><ellipse cx="15" cy="15" rx="13" ry="10" fill="#16a34a" transform="rotate(-30 15 15)"/><ellipse cx="18" cy="12" rx="8" ry="5" fill="#4ade80" transform="rotate(-20 18 12)"/></svg>
+                </h1>
+
+                <div class="mb-4">
                     <a href="{{ route('tentang') }}"
-                       class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md hover:bg-white/30 text-white font-bold px-6 py-3.5 rounded-full border border-white/40 transition-all shadow-xl text-sm">
-                        Jelajahi Sekarang →
+                       class="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 font-bold px-6 py-3 rounded-full shadow-lg transition-all hover:-translate-y-0.5 text-sm">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Pesona Kota Subang →
                     </a>
-                    <a href="{{ route('laporan.publik') }}"
-                       class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white font-bold px-6 py-3.5 rounded-full transition-all shadow-xl text-sm">
-                        📝 Buat Laporan
-                    </a>
+                </div>
+
+                <div class="flex items-center gap-2 text-white/70 text-xs">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>Pesona Alam Subang</span>
+                    <div class="flex-1 h-px bg-white/30 ml-1"></div>
+                </div>
+            </div>
+
+            {{-- KANAN: kosong — foto sudah jadi background penuh --}}
+            <div class="hidden lg:flex items-center justify-end py-6">
+                <div class="text-right">
+                    <p class="text-white font-black text-2xl leading-snug drop-shadow-lg">Alamnya Indah</p>
+                    <p class="text-yellow-300 font-black text-2xl leading-snug drop-shadow-lg">Budayanya Kaya</p>
+                    <p class="text-white font-black text-2xl leading-snug drop-shadow-lg">Wisatanya Memikat</p>
                 </div>
             </div>
         </div>
+    </div>
 
-        {{-- Label SUBANG tengah atas --}}
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-8 hidden lg:block pointer-events-none">
-            <div class="bg-white/80 backdrop-blur-md text-green-800 font-black text-xl tracking-[0.6em] px-8 py-2.5 rounded-full shadow-2xl border-b-4 border-green-600">
+    {{-- ── Dots slideshow + label SUBANG ── --}}
+    <div class="relative z-20 px-6 pb-4 flex items-center justify-between">
+        <div class="flex items-center gap-2 bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            <span class="text-white/80 text-xs font-medium">Pesona Alam Subang</span>
+        </div>
+        <div class="hidden lg:block">
+            <div class="bg-white/80 backdrop-blur-sm text-green-800 font-black text-lg tracking-[0.5em] px-6 py-2 rounded-full shadow-xl border-b-4 border-green-600">
                 SUBANG
             </div>
         </div>
+        <div class="flex items-center gap-2">
+            <template x-for="(s, i) in slides" :key="i">
+                <button @click="current = i"
+                        class="rounded-full transition-all duration-300"
+                        :class="current === i ? 'w-7 h-2.5 bg-yellow-400' : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'">
+                </button>
+            </template>
+        </div>
+    </div>
 
-        {{-- ── 4 Tombol kategori ── --}}
-        <div class="px-4 pb-5 flex flex-wrap justify-center gap-3">
+    {{-- ── 4 Tombol di bawah ── --}}
+    <div class="relative z-20 border-t border-white/20 bg-black/30 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-center gap-3">
+
+            {{-- Sejarah & Budaya — putih + border --}}
             <a href="{{ route('tentang') }}"
-               class="flex items-center gap-2.5 bg-green-700/90 hover:bg-green-600 backdrop-blur-md text-white font-bold px-5 py-2.5 rounded-full shadow-2xl transition-all hover:-translate-y-1 text-sm border border-green-500/60">
-                <span class="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center">🏛️</span>Sejarah & Budaya
+               class="flex items-center gap-2.5 bg-white hover:bg-gray-50 text-gray-800 font-bold px-5 py-2.5 rounded-full shadow-sm transition-all hover:-translate-y-0.5 text-sm border-2 border-gray-200">
+                <span class="w-7 h-7 bg-green-100 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-green-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                </span>
+                Sejarah & Budaya →
             </a>
+
+            {{-- Wisata & Kuliner — hijau --}}
             <a href="{{ route('wisata') }}"
-               class="flex items-center gap-2.5 bg-blue-700/90 hover:bg-blue-600 backdrop-blur-md text-white font-bold px-5 py-2.5 rounded-full shadow-2xl transition-all hover:-translate-y-1 text-sm border border-blue-500/60">
-                <span class="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center">🏔️</span>Wisata & Kuliner
+               class="flex items-center gap-2.5 bg-green-700 hover:bg-green-600 text-white font-bold px-5 py-2.5 rounded-full shadow-sm transition-all hover:-translate-y-0.5 text-sm">
+                <span class="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+                </span>
+                Wisata & Kuliner →
             </a>
-            <a href="{{ route('berita') }}"
-               class="flex items-center gap-2.5 backdrop-blur-md text-white font-bold px-5 py-2.5 rounded-full shadow-2xl transition-all hover:-translate-y-1 text-sm border border-orange-400/60"
-               style="background:rgba(234,88,12,0.9);">
-                <span class="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center">📰</span>Berita
-            </a>
+
+            {{-- Laporan — ungu --}}
             <a href="{{ route('laporan.publik') }}"
-               class="flex items-center gap-2.5 bg-purple-700/90 hover:bg-purple-600 backdrop-blur-md text-white font-bold px-5 py-2.5 rounded-full shadow-2xl transition-all hover:-translate-y-1 text-sm border border-purple-500/60">
-                <span class="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center">📋</span>Laporan
+               class="flex items-center gap-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold px-5 py-2.5 rounded-full shadow-sm transition-all hover:-translate-y-0.5 text-sm">
+                <span class="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="15" y2="16"/></svg>
+                </span>
+                Laporan →
             </a>
-        </div>
-
-        {{-- ── Slideshow dots + label ── --}}
-        <div class="px-4 pb-4 flex items-center justify-between">
-            {{-- Label slide aktif --}}
-            <div class="flex items-center gap-2 bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full">
-                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                <span class="text-white/80 text-xs font-medium" x-text="slides[current].label"></span>
-            </div>
-            {{-- Dots navigasi --}}
-            <div class="flex items-center gap-2">
-                <template x-for="(s, i) in slides" :key="i">
-                    <button @click="current = i"
-                            class="transition-all duration-300 rounded-full"
-                            :class="current === i ? 'w-8 h-2.5 bg-yellow-400' : 'w-2.5 h-2.5 bg-white/40 hover:bg-white/70'">
-                    </button>
-                </template>
-            </div>
-            {{-- Navigasi panah --}}
-            <div class="flex gap-2">
-                <button @click="current = (current - 1 + slides.length) % slides.length"
-                        class="w-9 h-9 bg-white/20 backdrop-blur-sm hover:bg-white/40 text-white rounded-full flex items-center justify-center transition-all border border-white/30">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                </button>
-                <button @click="current = (current + 1) % slides.length"
-                        class="w-9 h-9 bg-white/20 backdrop-blur-sm hover:bg-white/40 text-white rounded-full flex items-center justify-center transition-all border border-white/30">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-                </button>
-            </div>
-        </div>
-
-        {{-- ── Banner "Subang Kota dengan sejuta pesona" ── --}}
-        <div class="bg-gradient-to-r from-green-900/95 via-green-800/95 to-green-900/95 backdrop-blur-sm py-3.5 px-8 flex items-center justify-between border-t border-green-700/50">
-            <div class="flex items-center gap-3">
-                <div class="w-0.5 h-10 bg-yellow-400 rounded-full"></div>
-                <div>
-                    <p class="text-white font-black text-lg italic leading-none" style="font-family:'Plus Jakarta Sans',sans-serif;">Subang</p>
-                    <p class="text-yellow-300 text-xs font-semibold italic mt-0.5">Kota dengan sejuta pesona 🌿</p>
-                </div>
-            </div>
-            {{-- Foto polaroid --}}
-            <div class="hidden lg:flex gap-3 items-center">
-                @foreach(['🌊','🏔️','🎭','🍍'] as $ic)
-                <div class="bg-white p-1.5 rounded-xl shadow-2xl rotate-1 hover:rotate-0 hover:-translate-y-1 transition-all cursor-pointer">
-                    <div class="w-14 h-12 bg-gray-200 rounded-lg flex items-center justify-center text-xl">{{ $ic }}</div>
-                </div>
-                @endforeach
-            </div>
         </div>
     </div>
 </section>
 
-{{-- ══ STATS ══ --}}
-<section class="bg-white border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-        <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-100 text-center">
-            @foreach([
-                ['val'=>$stats['total'],  'lbl'=>'Total Laporan',  'icon'=>'📋','clr'=>'text-green-700'],
-                ['val'=>$stats['selesai'],'lbl'=>'Terselesaikan',  'icon'=>'✅','clr'=>'text-green-600'],
-                ['val'=>$stats['proses'], 'lbl'=>'Dalam Proses',   'icon'=>'⏳','clr'=>'text-orange-500'],
-                ['val'=>$stats['pelapor'],'lbl'=>'Warga Terdaftar','icon'=>'👥','clr'=>'text-blue-600'],
-            ] as $s)
-            <div class="py-4 px-2">
-                <div class="text-xl mb-0.5">{{ $s['icon'] }}</div>
-                <div class="text-2xl font-extrabold {{ $s['clr'] }}">{{ number_format($s['val']) }}</div>
-                <div class="text-xs text-gray-500 mt-0.5">{{ $s['lbl'] }}</div>
+{{-- ══════════════════════════════════════════════
+     BANNER SUBANG
+══════════════════════════════════════════════ --}}
+<section class="relative overflow-hidden py-8">
+    <img src="{{ asset('images/bc3.jpeg') }}?v=20260920" alt="Pesona Kabupaten Subang" class="absolute inset-0 h-full w-full object-cover">
+    <div class="absolute inset-0 bg-black/55"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div class="text-center lg:text-left">
+                <p class="text-white font-black text-2xl italic leading-none mb-1">
+                    <span class="text-yellow-300">Subang</span>
+                </p>
+                <p class="text-white text-lg font-bold">Kota dengan sejuta pesona</p>
+                <p class="text-white/80 text-sm mt-2 max-w-md leading-relaxed">
+                    Dari keindahan alam, kekayaan budaya, hingga kuliner khas yang menggugah selera, semua ada di Subang.
+                </p>
             </div>
-            @endforeach
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-5">
+                @foreach([
+                    ['icon'=>'🏔️','label'=>'Alam yang Indah'],
+                    ['icon'=>'🎭','label'=>'Budaya yang Kaya'],
+                    ['icon'=>'🍍','label'=>'Hasil Bumi Melimpah'],
+                    ['icon'=>'👥','label'=>'Masyarakat Ramah'],
+                ] as $item)
+                <div class="text-center min-w-[90px]">
+                    <div class="text-3xl mb-2">{{ $item['icon'] }}</div>
+                    <p class="text-white font-bold text-xs leading-snug">{{ $item['label'] }}</p>
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </section>
@@ -230,21 +230,6 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                 </svg>
             </a>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-14">
-            <div class="col-span-2 sm:col-span-2 rounded-2xl overflow-hidden bg-gray-100 h-56 sm:h-64">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsMR8vC4vTDz0n5C_RfzsPBcSt_SW12uM71KkzKouAQA&s=10"
-                     alt="Pemandangan Kabupaten Subang" class="w-full h-full object-cover">
-            </div>
-            <div class="rounded-2xl overflow-hidden bg-gray-100 h-56 sm:h-64">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfj-K8VW0volXC3X79Qbz2S064uUHXZ12V_JB5gU3tqQ&s=10"
-                     alt="Alam Subang" class="w-full h-full object-cover">
-            </div>
-            <div class="rounded-2xl overflow-hidden bg-gray-100 h-56 sm:h-64">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnU0GIu_ZXgVZgky3RGLt20QGnf8_sahLCVqThM1sjHA&s=10"
-                     alt="Sawah di Subang" class="w-full h-full object-cover">
-            </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -280,126 +265,19 @@
                     'desc'  => 'Kabupaten Subang terbagi ke dalam 30 kecamatan dengan Kota Subang sebagai ibu kota, berbatasan dengan Indramayu di utara, Sumedang di timur, Bandung Barat dan Purwakarta di selatan, serta Karawang di barat.',
                 ],
             ] as $item)
-            <div class="p-6 rounded-2xl border border-gray-100 hover:border-green-200 hover:shadow-md transition-all">
-                <div class="w-11 h-11 bg-green-50 border border-green-100 rounded-xl flex items-center justify-center text-green-600 mb-4">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        {!! $item['icon'] !!}
-                    </svg>
-                </div>
-                <h3 class="text-sm font-semibold text-gray-800 mb-2">{{ $item['title'] }}</h3>
-                <p class="text-xs text-gray-500 leading-relaxed">{{ $item['desc'] }}</p>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-{{-- ══ DESTINASI UNGGULAN ══ --}}
-<section class="bg-gray-50 py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-8">
-            <div>
-                <div class="flex items-center gap-2 mb-2"><div class="w-8 h-0.5 bg-yellow-400"></div><span class="text-yellow-600 text-xs font-bold uppercase tracking-widest">Destinasi Unggulan</span></div>
-                <h2 class="text-2xl font-extrabold text-gray-900">Jelajahi Keindahan Subang</h2>
-            </div>
-            <a href="{{ route('wisata') }}" class="text-sm font-semibold text-green-700 hover:text-green-800">Lihat Semua →</a>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            @foreach([
-                ['nama'=>'Curug Cileat',      'cat'=>'Wisata Alam',    'foto'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPw4z3g1Fb0oG-zczgHXoxUUzN5Q9wP-HSwS7N6wIyXQ&s=10'],
-                ['nama'=>'Kebun Teh Ciater',  'cat'=>'Agrowisata',     'foto'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7kcwCaqrVr-lw0UnyHYd_3lY-ew0cPWkdE-brRMDp7w&s=10'],
-                ['nama'=>'Pantai Pondok Bali','cat'=>'Wisata Pantai',  'foto'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-ZExt61gJFfpezP8C3I-sMGBQpctgJJw7UQjwUBE4nQ&s=10'],
-                ['nama'=>'Museum Subang',     'cat'=>'Wisata Sejarah', 'foto'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm8JOfJGlMxzxhWZzQNx5eTurqVAfaYesDRh2WXSQCaA&s=10'],
-            ] as $d)
-            <div class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all hover:-translate-y-1 aspect-[3/4]">
-                <img src="{{ $d['foto'] }}"
-                     alt="{{ $d['nama'] }}"
-                     loading="lazy"
-                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-4">
-                    <div class="flex items-center gap-1.5 mb-1">
-                        <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                            <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                        </div>
-                        <span class="text-white font-bold text-sm leading-none">{{ $d['nama'] }}</span>
+            <div class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-green-200 hover:shadow-xl">
+                <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-green-500 via-emerald-400 to-yellow-300"></div>
+                <div class="mb-5 flex items-start justify-between">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-full bg-green-50 text-green-700 ring-8 ring-green-50/60">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            {!! $item['icon'] !!}
+                        </svg>
                     </div>
-                    <span class="text-white/70 text-xs">{{ $d['cat'] }}</span>
+                    <span class="text-xs font-black tracking-widest text-gray-300">0{{ $loop->iteration }}</span>
                 </div>
+                <h3 class="mb-3 text-base font-extrabold text-gray-900 transition-colors group-hover:text-green-700">{{ $item['title'] }}</h3>
+                <p class="flex-1 text-sm leading-6 text-gray-500">{{ $item['desc'] }}</p>
             </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-{{-- ══ BANNER SUBANG ══ --}}
-<section class="relative overflow-hidden bg-green-800 py-14">
-    {{-- Slot foto background banner — ganti div ini dengan <img src="..." class="absolute inset-0 w-full h-full object-cover opacity-20"> --}}
-    <div class="absolute inset-0 bg-gradient-to-r from-green-900/50 to-green-700/30 flex items-center justify-center opacity-30 pointer-events-none">
-        <span class="text-white/20 text-8xl font-black tracking-widest select-none">SUBANG</span>
-    </div>
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div>
-                <h2 class="text-3xl sm:text-4xl font-black text-white leading-tight mb-3 italic">
-                    Subang<br><span class="text-yellow-300">Kota dengan sejuta pesona</span>
-                </h2>
-                <button class="flex items-center gap-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 font-bold px-5 py-3 rounded-full transition-all text-sm mt-4">
-                    <div class="w-8 h-8 bg-yellow-900/20 rounded-full flex items-center justify-center">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
-                    </div>
-                    Tonton Video Profil
-                </button>
-            </div>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                @foreach([
-                    ['🏔️','Alam yang Indah','Gunung, air terjun, pantai, dan kebun teh'],
-                    ['🎭','Budaya yang Kaya','Seni tradisional dan adat istiadat Sunda'],
-                    ['🍍','Hasil Bumi Melimpah','Nanas, teh, dan perkebunan lainnya'],
-                    ['👥','Masyarakat Ramah','Hidup berdampingan dengan budaya lokal'],
-                ] as [$ic,$t,$d])
-                <div class="text-center">
-                    <div class="text-3xl mb-2">{{ $ic }}</div>
-                    <div class="text-white font-bold text-xs mb-1">{{ $t }}</div>
-                    <p class="text-green-200/70 text-[11px] leading-snug">{{ $d }}</p>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- ══ BERITA TERBARU ══ --}}
-<section class="bg-gray-50 py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-end justify-between mb-10">
-            <div>
-                <p class="text-green-600 text-xs font-bold uppercase tracking-widest mb-2">Informasi Terkini</p>
-                <h2 class="text-3xl font-extrabold text-gray-900">Terbaru dari Subang</h2>
-            </div>
-            <a href="{{ route('berita') }}" class="text-sm font-semibold text-green-700 hover:underline hidden sm:block">Lihat lebih banyak →</a>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach($berita as $b)
-            <a href="{{ route('berita.show',$b['slug']) }}"
-               class="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div class="aspect-video bg-gray-100 flex flex-col items-center justify-center gap-2 relative overflow-hidden">
-                    <span class="text-5xl group-hover:scale-110 transition-transform duration-300">{{ $b['icon'] }}</span>
-                    <span class="text-xs text-gray-400">Foto Berita 600×338px</span>
-                    <div class="absolute top-3 left-3">
-                        <span class="text-[11px] font-bold text-white px-2.5 py-1 rounded-full shadow"
-                              style="background:{{ $b['warna'] ?? '#16a34a' }}">{{ $b['kategori'] }}</span>
-                    </div>
-                </div>
-                <div class="p-5">
-                    <div class="text-xs text-gray-400 mb-2">{{ $b['tanggal'] }}</div>
-                    <h3 class="font-bold text-gray-800 text-sm leading-snug line-clamp-2 group-hover:text-green-700 transition-colors">{{ $b['judul'] }}</h3>
-                    <p class="text-xs text-gray-500 mt-2 line-clamp-2 leading-relaxed">{{ $b['ringkasan'] }}</p>
-                    <span class="mt-3 inline-block text-xs font-bold text-green-700 group-hover:underline">Baca Selengkapnya →</span>
-                </div>
-            </a>
             @endforeach
         </div>
     </div>
@@ -651,7 +529,6 @@
         <p class="text-gray-400 text-sm mb-8 max-w-md mx-auto">Sistem Aduan & Pelaporan Aspirasi Subang</p>
         <div class="flex flex-wrap justify-center gap-3 mb-10">
             <a href="{{ route('laporan.publik') }}" class="bg-green-600 hover:bg-green-500 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-colors">Buat Laporan</a>
-            <a href="{{ route('berita') }}"          class="bg-gray-800 hover:bg-gray-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm border border-gray-700 transition-colors">Berita</a>
             <a href="{{ route('tentang') }}"         class="bg-gray-800 hover:bg-gray-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm border border-gray-700 transition-colors">Tentang Subang</a>
             <a href="{{ route('panduan') }}"         class="bg-gray-800 hover:bg-gray-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm border border-gray-700 transition-colors">Panduan</a>
         </div>

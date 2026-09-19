@@ -215,6 +215,14 @@ class PublicController extends Controller
 
         $reports = $query->orderByDesc('created_at')->paginate(10);
 
+        $todayReports = Report::with(['category', 'user'])
+            ->withCount('supports')
+            ->whereNotIn('status', ['ditolak'])
+            ->whereDate('created_at', today())
+            ->orderByDesc('created_at')
+            ->take(5)
+            ->get();
+
         // Stats untuk sidebar
         $stats = [
             'total'    => Report::count(),
@@ -236,6 +244,6 @@ class PublicController extends Controller
                 'kategori'     => $r->category->nama_kategori,
             ])->values();
 
-        return view('laporan.publik', compact('reports', 'categories', 'mapPoints', 'stats'));
+        return view('laporan.publik', compact('reports', 'todayReports', 'categories', 'mapPoints', 'stats'));
     }
 }

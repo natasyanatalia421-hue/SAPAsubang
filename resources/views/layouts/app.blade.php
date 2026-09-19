@@ -38,7 +38,6 @@
 <header class="bg-white shadow-sm sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center h-16 gap-4">
-
             {{-- Logo --}}
             <a href="{{ route('home') }}" class="flex items-center gap-3 flex-shrink-0">
                 {{-- Logo resmi Kabupaten Subang --}}
@@ -52,42 +51,84 @@
                 </div>
             </a>
 
-            {{-- Nav Desktop --}}
-            <nav class="hidden md:flex items-center gap-0 flex-1 justify-center">
+            {{-- Nav Desktop — ikon persis seperti desain --}}
+            <nav class="hidden md:flex items-center gap-0 flex-1 justify-center h-16">
+
+                {{-- Beranda: ikon rumah --}}
                 <a href="{{ route('home') }}"
-                   class="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold transition-colors
-                          {{ request()->routeIs('home') ? 'text-green-700 border-b-2 border-yellow-400' : 'text-gray-600 hover:text-green-700' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-                    Beranda
+                   class="flex flex-col items-center gap-0.5 px-4 py-2 text-xs font-semibold transition-colors relative
+                          {{ request()->routeIs('home') ? 'text-green-700' : 'text-gray-500 hover:text-green-700' }}">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                    <span>Beranda</span>
+                    @if(request()->routeIs('home'))
+                    <span class="absolute bottom-0 left-3 right-3 h-0.5 bg-yellow-400 rounded-full"></span>
+                    @endif
                 </a>
+
+                {{-- Sejarah & Budaya: ikon buku --}}
                 <a href="{{ route('tentang') }}"
-                   class="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold transition-colors
-                          {{ request()->routeIs('tentang') ? 'text-green-700 border-b-2 border-yellow-400' : 'text-gray-600 hover:text-green-700' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                    Sejarah & Budaya
+                   class="flex flex-col items-center gap-0.5 px-4 py-2 text-xs font-semibold transition-colors relative
+                          {{ request()->routeIs('tentang') ? 'text-green-700' : 'text-gray-500 hover:text-green-700' }}">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                    </svg>
+                    <span>Sejarah & Budaya</span>
+                    @if(request()->routeIs('tentang'))
+                    <span class="absolute bottom-0 left-3 right-3 h-0.5 bg-yellow-400 rounded-full"></span>
+                    @endif
                 </a>
+
+                {{-- Wisata: ikon daun/kompas --}}
                 <a href="{{ route('wisata') }}"
-                   class="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold transition-colors
-                          {{ request()->routeIs('wisata') ? 'text-green-700 border-b-2 border-yellow-400' : 'text-gray-600 hover:text-green-700' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
-                    Wisata
+                   class="flex flex-col items-center gap-0.5 px-4 py-2 text-xs font-semibold transition-colors relative
+                          {{ request()->routeIs('wisata') ? 'text-green-700' : 'text-gray-500 hover:text-green-700' }}">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="2" x2="12" y2="4"/>
+                        <line x1="12" y1="20" x2="12" y2="22"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="2" y1="12" x2="4" y2="12"/>
+                        <line x1="20" y1="12" x2="22" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <span>Wisata</span>
+                    @if(request()->routeIs('wisata'))
+                    <span class="absolute bottom-0 left-3 right-3 h-0.5 bg-yellow-400 rounded-full"></span>
+                    @endif
                 </a>
-                <a href="{{ route('berita') }}"
-                   class="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold transition-colors
-                          {{ request()->routeIs('berita*') ? 'text-green-700 border-b-2 border-yellow-400' : 'text-gray-600 hover:text-green-700' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
-                    Berita
-                </a>
+
+                {{-- Laporan: ikon clipboard --}}
                 <a href="{{ route('laporan.publik') }}"
-                   class="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold transition-colors
-                          {{ request()->routeIs('laporan.publik') ? 'text-green-700 border-b-2 border-yellow-400' : 'text-gray-600 hover:text-green-700' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-                    Laporan
+                   class="flex flex-col items-center gap-0.5 px-4 py-2 text-xs font-semibold transition-colors relative
+                          {{ request()->routeIs('laporan.publik') ? 'text-green-700' : 'text-gray-500 hover:text-green-700' }}">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                        <line x1="9" y1="12" x2="15" y2="12"/>
+                        <line x1="9" y1="16" x2="15" y2="16"/>
+                    </svg>
+                    <span>Laporan</span>
+                    @if(request()->routeIs('laporan.publik'))
+                    <span class="absolute bottom-0 left-3 right-3 h-0.5 bg-yellow-400 rounded-full"></span>
+                    @endif
                 </a>
             </nav>
 
-            {{-- Kanan: auth saja (search & cuaca dihapus) --}}
+            {{-- Kanan: search icon + auth --}}
             <div class="hidden md:flex items-center gap-2 ml-auto">
+                {{-- Search icon bulat --}}
+                <button class="w-9 h-9 rounded-full border-2 border-green-100 bg-green-50 flex items-center justify-center text-green-600 hover:bg-green-100 transition-colors">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </button>
+
                 @auth
                 <div x-data="{open:false}" class="relative">
                     <button @click="open=!open" class="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all text-sm">
@@ -145,7 +186,6 @@
     <div x-show="mobileMenu" x-cloak x-transition class="md:hidden border-t border-gray-100 bg-white px-4 py-3 space-y-1">
         <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700">🏠 Beranda</a>
         <a href="{{ route('tentang') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700">📖 Sejarah & Budaya</a>
-        <a href="{{ route('berita') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700">📰 Berita</a>
         <a href="{{ route('laporan.publik') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700">📋 Laporan</a>
         <div class="pt-2 border-t border-gray-100 flex gap-2">
             @auth
@@ -162,9 +202,9 @@
 <main>@yield('content')</main>
 
 {{-- FOOTER --}}
-<footer class="bg-green-900 text-green-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-green-800">
+<footer class="text-green-100" style="background-color:#14532d;">
+    <div class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 gap-10 border-b border-white/10 pb-10 sm:grid-cols-2 lg:grid-cols-4">
 
             {{-- Kolom 1: Logo + alamat --}}
             <div>
@@ -234,21 +274,33 @@
                 </ul>
             </div>
 
+            {{-- Kolom 3: Jelajahi layanan --}}
+            <div>
+                <h4 class="mb-4 text-sm font-bold text-white">Jelajahi</h4>
+                <nav class="space-y-3 text-xs text-green-200/75">
+                    <a href="{{ route('home') }}" class="block transition hover:text-white">Beranda</a>
+                    <a href="{{ route('tentang') }}" class="block transition hover:text-white">Sejarah & Budaya</a>
+                    <a href="{{ route('wisata') }}" class="block transition hover:text-white">Wisata</a>
+                    <a href="{{ route('laporan.publik') }}" class="block transition hover:text-white">Laporan & Pengaduan</a>
+                    <a href="{{ route('panduan') }}" class="block transition hover:text-white">Panduan Pelaporan</a>
+                </nav>
+            </div>
+
             {{-- Kolom 4: Tentang SAPAsubang --}}
             <div>
-                <h4 class="text-white font-bold mb-4 text-sm">SAPAsubang</h4>
+                <h4 class="mb-4 text-sm font-bold text-white">SAPAsubang</h4>
                 <p class="text-xs text-green-200/70 leading-relaxed">Sistem Aduan & Pelaporan Aspirasi Subang. Laporkan masalah fasilitas umum Kota Subang dengan mudah dan cepat.</p>
-                <div class="mt-4 space-y-1.5 text-xs text-green-200/70">
-                    <a href="{{ route('laporan.publik') }}" class="flex items-center gap-2 hover:text-white transition-colors">→ Buat Laporan</a>
-                    <a href="{{ route('panduan') }}" class="flex items-center gap-2 hover:text-white transition-colors">→ Panduan Pelaporan</a>
-                    <a href="{{ route('berita') }}" class="flex items-center gap-2 hover:text-white transition-colors">→ Berita Terkini</a>
+                <div class="mt-5 rounded-2xl border border-white/10 bg-white/5 p-4">
+                    <p class="text-[11px] font-bold uppercase tracking-wider text-green-300">Butuh bantuan?</p>
+                    <p class="mt-1 text-xs leading-relaxed text-green-100/70">Gunakan halaman Laporan untuk menyampaikan masalah fasilitas umum di sekitar Anda.</p>
+                    <a href="{{ route('laporan.publik') }}" class="mt-3 inline-flex text-xs font-bold text-white hover:text-green-300">Buat laporan →</a>
                 </div>
             </div>
 
         </div>
 
         {{-- Bottom bar --}}
-        <div class="pt-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-green-300/70">
+        <div class="flex flex-col items-center justify-between gap-2 pt-6 text-center text-xs text-green-300/70 sm:flex-row sm:text-left">
             <span>© {{ date('Y') }} Pemerintah Kabupaten Subang. All rights reserved.</span>
             <span>SAPAsubang — Sistem Aduan & Pelaporan Aspirasi Subang</span>
         </div>
