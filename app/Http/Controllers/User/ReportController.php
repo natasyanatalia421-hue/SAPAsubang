@@ -66,6 +66,14 @@ class ReportController extends Controller
             'deskripsi'    => $data['deskripsi'],
             'status'       => 'menunggu_verifikasi',
         ]);
+        foreach (\App\Models\User::where('role', 'admin')->get() as $admin) {
+    \App\Models\Notification::kirim(
+        $admin->id,
+        'Laporan Baru Masuk',
+        "Laporan {$report->kode_laporan} menunggu verifikasi.",
+        $report->id
+    );
+}
 
         \App\Models\ReportStatusLog::create([
             'report_id'   => $report->id,
