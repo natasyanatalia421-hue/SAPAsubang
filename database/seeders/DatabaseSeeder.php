@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'role'     => 'admin',
             'no_hp'    => '081200000001',
+            'is_super_admin' => true,
         ]);
 
         // ── Petugas ──────────────────────────────────────────────────────────────
