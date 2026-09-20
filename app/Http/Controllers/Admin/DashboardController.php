@@ -42,7 +42,7 @@ class DashboardController extends Controller
             'lat'     => $r->latitude,
             'lng'     => $r->longitude,
             'status'  => $r->status,
-            'kategori'=> $r->category->nama_kategori,
+            'kategori' => $r->category?->nama_kategori ?? '-',
             'url'     => route('admin.reports.show', $r->id),
         ])->values();
 

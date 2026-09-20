@@ -50,7 +50,7 @@
                             👍 {{ $r->supports_count }} dukungan
                         </span>
                     </div>
-                    <p class="text-xs text-gray-500 mt-0.5">{{ $r->category->nama_kategori }} — {{ $r->user->name }}</p>
+                    <p class="text-xs text-gray-500 mt-0.5">{{ $r->category?->nama_kategori ?? '—' }} — {{ $r->user?->name ?? 'Anonim' }}</p>
                     <p class="text-xs text-gray-400 mt-0.5">{{ Str::limit($r->deskripsi, 70) }}</p>
                 </div>
                 <div class="text-xs text-gray-400 flex-shrink-0">{{ $r->created_at->diffForHumans() }}</div>
@@ -102,7 +102,7 @@
                                 <span class="text-gray-700">{{ $r->category->nama_kategori }}</span>
                             </span>
                         </td>
-                        <td class="px-4 py-3 text-gray-600">{{ $r->user->name }}</td>
+                        <td class="px-4 py-3 text-gray-600">{{ $r->user?->name ?? 'Anonim' }}</td>
                         <td class="px-4 py-3">@include('components.status-badge', ['status' => $r->status])</td>
                         <td class="px-4 py-3">
                             @if($r->prioritas)

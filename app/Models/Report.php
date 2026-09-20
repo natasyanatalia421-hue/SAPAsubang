@@ -78,8 +78,8 @@ class Report extends Model
     }
 
     // Relasi
-    public function user(): BelongsTo     { return $this->belongsTo(User::class, 'user_id'); }
-    public function category(): BelongsTo { return $this->belongsTo(Category::class, 'category_id'); }
+public function user(): BelongsTo     { return $this->belongsTo(User::class, 'user_id')->withDefault(['name' => 'Anonim']); }
+public function category(): BelongsTo { return $this->belongsTo(Category::class, 'category_id')->withDefault(['nama_kategori' => '-']); }
     public function admin(): BelongsTo    { return $this->belongsTo(User::class, 'admin_id'); }
     public function petugas(): BelongsTo  { return $this->belongsTo(User::class, 'petugas_id'); }
 
