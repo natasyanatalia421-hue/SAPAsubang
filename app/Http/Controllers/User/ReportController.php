@@ -48,17 +48,14 @@ class ReportController extends Controller
         );
 
         if ($nearby) {
-            // Ada laporan serupa — tanya user apakah ingin mendukung
             return redirect()->route('user.reports.duplicate', $nearby->id)
                 ->with('from_lat',  $data['latitude'])
                 ->with('from_lng',  $data['longitude'])
                 ->with('category_id', $data['category_id']);
         }
 
-        // ── Simpan foto ─────────────────────────────────────────────────────────
         $fotoPath = $request->file('foto_sebelum')->store('reports/before', 'public');
 
-        // ── Buat laporan baru ───────────────────────────────────────────────────
         $report = Report::create([
             'kode_laporan' => Report::generateKode(),
             'user_id'      => Auth::id(),
@@ -70,7 +67,6 @@ class ReportController extends Controller
             'status'       => 'menunggu_verifikasi',
         ]);
 
-        // Catat log status awal
         \App\Models\ReportStatusLog::create([
             'report_id'   => $report->id,
             'status_lama' => null,
@@ -99,12 +95,10 @@ class ReportController extends Controller
     {
         $userId = Auth::id();
 
-        // Cegah duplikat dukungan
         if (ReportSupport::where('report_id', $report->id)->where('user_id', $userId)->exists()) {
             return back()->with('info', 'Anda sudah pernah mendukung laporan ini.');
         }
 
-        // Cegah mendukung laporan sendiri
         if ($report->user_id === $userId) {
             return back()->with('info', 'Anda tidak dapat mendukung laporan milik sendiri.');
         }
@@ -118,7 +112,6 @@ class ReportController extends Controller
     /** Detail laporan */
     public function show(Report $report)
     {
-        // User hanya bisa lihat laporan sendiri atau laporan yang didukungnya
         $user = Auth::user();
         $isSupporter = ReportSupport::where('report_id', $report->id)
             ->where('user_id', $user->id)->exists();
@@ -131,5 +124,64 @@ class ReportController extends Controller
         $supportCount = $report->supports()->count();
 
         return view('user.reports.show', compact('report', 'supportCount'));
+    }
+
+    /** Form edit laporan milik sendiri */
+    public function edit(Report $report)
+    {
+        if ($report->user_id !== Auth::id() || $report->status !== 'menunggu_verifikasi') {
+            abort(403, 'Laporan ini tidak dapat diedit.');
+        }
+
+        $categories = Category::where('aktif', true)->orderBy('nama_kategori')->get();
+
+        return view('user.reports.edit', compact('report', 'categories'));
+    }
+
+    /** Simpan perubahan laporan */
+    public function update(Request $request, Report $report)
+    {
+        if ($report->user_id !== Auth::id() || $report->status !== 'menunggu_verifikasi') {
+            abort(403, 'Laporan ini tidak dapat diedit.');
+        }
+
+        $data = $request->validate([
+            'category_id'  => 'required|exists:categories,id',
+            'deskripsi'    => 'required|string|min:10|max:1000',
+            'foto_sebelum' => 'nullable|image|max:5120',
+        ], [
+            'category_id.required' => 'Pilih kategori laporan.',
+            'deskripsi.required'   => 'Deskripsi masalah wajib diisi.',
+            'deskripsi.min'        => 'Deskripsi minimal 10 karakter.',
+            'foto_sebelum.image'   => 'File harus berupa gambar.',
+            'foto_sebelum.max'     => 'Ukuran foto maksimal 5 MB.',
+        ]);
+
+        if ($request->hasFile('foto_sebelum')) {
+            if ($report->foto_sebelum) {
+                Storage::disk('public')->delete($report->foto_sebelum);
+            }
+            $data['foto_sebelum'] = $request->file('foto_sebelum')->store('reports/before', 'public');
+        }
+
+        $report->update($data);
+
+        return redirect()->route('user.dashboard')->with('success', 'Laporan berhasil diperbarui.');
+    }
+
+    /** Hapus laporan milik sendiri */
+    public function destroy(Report $report)
+    {
+        if ($report->user_id !== Auth::id() || $report->status !== 'menunggu_verifikasi') {
+            abort(403, 'Laporan ini tidak dapat dihapus.');
+        }
+
+        if ($report->foto_sebelum) {
+            Storage::disk('public')->delete($report->foto_sebelum);
+        }
+
+        $report->delete();
+
+        return redirect()->route('user.dashboard')->with('success', 'Laporan berhasil dihapus.');
     }
 }

@@ -5,36 +5,56 @@
 @section('content')
 <div class="max-w-3xl mx-auto space-y-6">
 
-    {{-- Header info --}}
-    <div class="bg-white rounded-2xl border border-gray-200 p-6">
-        <div class="flex items-start justify-between gap-4 flex-wrap">
-            <div>
-                <div class="flex items-center gap-3 flex-wrap">
-                    <span class="text-2xl">{{ $report->category->icon }}</span>
-                    <h2 class="text-xl font-bold text-gray-800">{{ $report->kode_laporan }}</h2>
-                    @include('components.status-badge', ['status' => $report->status])
-                    @if($report->prioritas)
-                        @include('components.prioritas-badge', ['prioritas' => $report->prioritas])
-                    @endif
-                </div>
-                <p class="text-gray-600 text-sm mt-1">{{ $report->category->nama_kategori }}</p>
-                <p class="text-gray-400 text-xs mt-0.5">Dilaporkan {{ $report->created_at->format('d M Y, H:i') }}</p>
-            </div>
-            <div class="text-right text-sm">
-                <p class="text-gray-500">{{ $report->supports->count() }} Pendukung</p>
-                @if($report->petugas)
-                    <p class="text-gray-600 mt-1">Petugas: <span class="font-medium">{{ $report->petugas->name }}</span></p>
+{{-- Header info --}}
+<div class="bg-white rounded-2xl border border-gray-200 p-6">
+    <div class="flex items-start justify-between gap-4 flex-wrap">
+        <div>
+            <div class="flex items-center gap-3 flex-wrap">
+                <span class="text-2xl">{{ $report->category->icon }}</span>
+                <h2 class="text-xl font-bold text-gray-800">{{ $report->kode_laporan }}</h2>
+                @include('components.status-badge', ['status' => $report->status])
+                @if($report->prioritas)
+                    @include('components.prioritas-badge', ['prioritas' => $report->prioritas])
                 @endif
             </div>
+            <p class="text-gray-600 text-sm mt-1">{{ $report->category->nama_kategori }}</p>
+            <p class="text-gray-400 text-xs mt-0.5">Dilaporkan {{ $report->created_at->format('d M Y, H:i') }}</p>
         </div>
-
-        @if($report->alasan_ditolak)
-        <div class="mt-4 bg-red-50 border border-red-200 rounded-xl p-4">
-            <p class="text-sm font-semibold text-red-700">Alasan Penolakan:</p>
-            <p class="text-sm text-red-600 mt-1">{{ $report->alasan_ditolak }}</p>
+        <div class="text-right text-sm">
+            <p class="text-gray-500">{{ $report->supports->count() }} Pendukung</p>
+            @if($report->petugas)
+                <p class="text-gray-600 mt-1">Petugas: <span class="font-medium">{{ $report->petugas->name }}</span></p>
+            @endif
         </div>
-        @endif
     </div>
+
+    {{-- Action Edit/Delete: cuma untuk pemilik laporan & status masih diajukan --}}
+    {{ dd(auth()->id(), $report->user_id, $report->status) }}
+    @if(auth()->id() === $report->user_id && $report->status === 'diajukan')
+    <div class="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100">
+        <a href="{{ route('user.reports.edit', $report->id) }}"
+           class="flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-800 px-3 py-2 rounded-xl hover:bg-blue-50 transition-colors">
+            ✏️ Edit Laporan
+        </a>
+        <form action="{{ route('user.reports.destroy', $report->id) }}" method="POST"
+              onsubmit="return confirm('Yakin mau hapus laporan ini? Tindakan ini tidak bisa dibatalkan.')">
+            @csrf
+            @method('DELETE')
+            <button type="submit"
+                    class="flex items-center gap-1.5 text-sm font-medium text-red-600 hover:text-red-800 px-3 py-2 rounded-xl hover:bg-red-50 transition-colors">
+                🗑️ Hapus Laporan
+            </button>
+        </form>
+    </div>
+    @endif
+
+    @if($report->alasan_ditolak)
+    <div class="mt-4 bg-red-50 border border-red-200 rounded-xl p-4">
+        <p class="text-sm font-semibold text-red-700">Alasan Penolakan:</p>
+        <p class="text-sm text-red-600 mt-1">{{ $report->alasan_ditolak }}</p>
+    </div>
+    @endif
+</div>
 
     {{-- Foto sebelum & sesudah --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

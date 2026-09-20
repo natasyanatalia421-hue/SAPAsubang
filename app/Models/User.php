@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -19,11 +20,14 @@ class User extends Authenticatable
         'role',
         'no_hp',
         'google_id',
+        'is_active',
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
+        'is_active' => 'boolean',
+        
     ];
 
     protected function casts(): array
@@ -31,13 +35,20 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_active' => 'boolean',
+            'is_super_admin' => 'boolean',
         ];
     }
 
-    // Helper role checks
-    public function isAdmin(): bool    { return $this->role === 'admin'; }
-    public function isPetugas(): bool  { return $this->role === 'petugas'; }
-    public function isUser(): bool     { return $this->role === 'user'; }
+// Helper role checks
+public function isAdmin(): bool    { return $this->role === 'admin'; }
+public function isPetugas(): bool  { return $this->role === 'petugas'; }
+public function isUser(): bool     { return $this->role === 'user'; }
+
+public function isSuperAdmin(): bool
+{
+    return $this->role === 'admin' && (bool) $this->is_super_admin;
+}
 
     // Relasi
     public function reports(): HasMany

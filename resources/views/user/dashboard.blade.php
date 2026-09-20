@@ -4,6 +4,13 @@
 @section('content')
 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
 
+    {{-- Flash message --}}
+    @if(session('success'))
+    <div class="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-xl">
+        {{ session('success') }}
+    </div>
+    @endif
+
     {{-- Header --}}
     <div class="flex items-center justify-between flex-wrap gap-3">
         <div>
@@ -53,21 +60,40 @@
         @else
         <div class="divide-y divide-gray-50">
             @foreach($reports as $r)
-            <a href="{{ route('user.reports.show', $r->id) }}"
-               class="flex items-start gap-4 px-5 py-4 hover:bg-gray-50 transition-colors group">
-                <div class="text-2xl flex-shrink-0 mt-0.5">{{ $r->category->icon ?? '' }}</div>
-                <div class="flex-1 min-w-0">
-                    <div class="flex items-center gap-2 flex-wrap">
-                        <span class="font-mono text-xs font-semibold text-gray-600">{{ $r->kode_laporan }}</span>
-                        @include('components.status-badge', ['status' => $r->status])
-                        @if($r->prioritas) @include('components.priority-badge', ['prioritas' => $r->prioritas]) @endif
+            <div class="flex items-start gap-4 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                <a href="{{ route('user.reports.show', $r->id) }}" class="flex items-start gap-4 flex-1 min-w-0">
+                    <div class="text-2xl flex-shrink-0 mt-0.5">{{ $r->category->icon ?? '' }}</div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="font-mono text-xs font-semibold text-gray-600">{{ $r->kode_laporan }}</span>
+                            @include('components.status-badge', ['status' => $r->status])
+                            @if($r->prioritas) @include('components.priority-badge', ['prioritas' => $r->prioritas]) @endif
+                        </div>
+                        <p class="text-xs text-gray-500 mt-0.5">{{ $r->category->nama_kategori }}</p>
+                        <p class="text-xs text-gray-400 mt-0.5 truncate">{{ Str::limit($r->deskripsi, 70) }}</p>
+                        <p class="text-xs text-gray-400 mt-1">{{ $r->created_at->diffForHumans() }}</p>
                     </div>
-                    <p class="text-xs text-gray-500 mt-0.5">{{ $r->category->nama_kategori }}</p>
-                    <p class="text-xs text-gray-400 mt-0.5 truncate">{{ Str::limit($r->deskripsi, 70) }}</p>
-                    <p class="text-xs text-gray-400 mt-1">{{ $r->created_at->diffForHumans() }}</p>
+                </a>
+
+                <div class="flex items-center gap-2 flex-shrink-0">
+                    @if($r->status === 'menunggu_verifikasi')
+                    <a href="{{ route('user.reports.edit', $r->id) }}"
+                       class="text-xs font-medium text-blue-600 hover:text-blue-800 px-2 py-1 rounded-lg hover:bg-blue-50">
+                        Edit
+                    </a>
+                    <form action="{{ route('user.reports.destroy', $r->id) }}" method="POST"
+                          onsubmit="return confirm('Yakin mau hapus laporan ini?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                                class="text-xs font-medium text-red-600 hover:text-red-800 px-2 py-1 rounded-lg hover:bg-red-50">
+                            Hapus
+                        </button>
+                    </form>
+                    @endif
+                    <a href="{{ route('user.reports.show', $r->id) }}" class="text-gray-300 group-hover:text-gray-500 text-lg">›</a>
                 </div>
-                <span class="text-gray-300 group-hover:text-gray-500 text-lg flex-shrink-0">›</span>
-            </a>
+            </div>
             @endforeach
         </div>
         <div class="px-5 py-3 border-t border-gray-100">{{ $reports->links() }}</div>

@@ -8,6 +8,7 @@
     @vite(['resources/css/app.css'  , 'resources/js/app.js'])
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <style>
         [x-cloak]{display:none!important}
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -147,22 +148,25 @@
                         </div>
                         <div class="py-1">
                             @if(auth()->user()->role==='admin')
-                            <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">📊 Dashboard Admin</a>
+                            <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"><i class="bi bi-bar-chart-fill"></i> Dashboard Admin</a>
+                            @if(auth()->user()->isSuperAdmin())
+                            <a href="{{ route('admin.users.index') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"><i class="bi bi-people-fill"></i> Manajemen Akun</a>
+                            @endif
                             @elseif(auth()->user()->role==='petugas')
-                            <a href="{{ route('petugas.dashboard') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">🗺️ Dashboard Petugas</a>
+                            <a href="{{ route('petugas.dashboard') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"><i class="bi bi-map-fill"></i> Dashboard Petugas</a>
                             @else
-                            <a href="{{ route('user.dashboard') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">🏠 Dashboard Saya</a>
-                            <a href="{{ route('user.reports.create') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">📝 Buat Laporan</a>
+                            <a href="{{ route('user.dashboard') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"><i class="bi bi-house-door-fill"></i> Dashboard Saya</a>
+                            <a href="{{ route('user.reports.create') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"><i class="bi bi-pencil-square"></i> Buat Laporan</a>
                             @endif
                             <a href="{{ route('notifications.index') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
-                                🔔 Notifikasi
+                                <i class="bi bi-bell-fill"></i> Notifikasi
                                 <span id="notif-badge" class="ml-auto bg-red-500 text-white text-[10px] rounded-full px-1.5 py-0.5 hidden"></span>
                             </a>
                         </div>
                         <div class="border-t border-gray-100">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50">🚪 Keluar</button>
+                                <button class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50"><i class="bi bi-box-arrow-right"></i> Keluar</button>
                             </form>
                         </div>
                     </div>
@@ -184,9 +188,19 @@
 
     {{-- Mobile menu --}}
     <div x-show="mobileMenu" x-cloak x-transition class="md:hidden border-t border-gray-100 bg-white px-4 py-3 space-y-1">
-        <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700">🏠 Beranda</a>
-        <a href="{{ route('tentang') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700">📖 Sejarah & Budaya</a>
-        <a href="{{ route('laporan.publik') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700">📋 Laporan</a>
+        <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700"><i class="bi bi-house-door-fill"></i> Beranda</a>
+        <a href="{{ route('tentang') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700"><i class="bi bi-book-fill"></i> Sejarah & Budaya</a>
+        <a href="{{ route('laporan.publik') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700"><i class="bi bi-clipboard-fill"></i> Laporan</a>
+
+        @auth
+        @if(auth()->user()->role==='admin')
+        <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700"><i class="bi bi-bar-chart-fill"></i> Dashboard Admin</a>
+        @if(auth()->user()->isSuperAdmin())
+        <a href="{{ route('admin.users.index') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700"><i class="bi bi-people-fill"></i> Manajemen Akun</a>
+        @endif
+        @endif
+        @endauth
+
         <div class="pt-2 border-t border-gray-100 flex gap-2">
             @auth
             <a href="{{ route('user.dashboard') }}" class="flex-1 text-center py-2 text-sm border border-gray-200 rounded-xl text-gray-700">Dashboard</a>
@@ -219,9 +233,9 @@
                     </div>
                 </div>
                 <ul class="space-y-1.5 text-xs text-green-200/80">
-                    <li class="flex gap-2 items-start"><span class="flex-shrink-0">📍</span> Kabupaten Subang, Jawa Barat</li>
-                    <li class="flex gap-2 items-start"><span class="flex-shrink-0">📞</span> (0260) 411xxxx</li>
-                    <li class="flex gap-2 items-start"><span class="flex-shrink-0">✉</span> layanan@kotasubang.go.id</li>
+                    <li class="flex gap-2 items-start"><span class="flex-shrink-0"><i class="bi bi-geo-alt-fill"></i></span> Kabupaten Subang, Jawa Barat</li>
+                    <li class="flex gap-2 items-start"><span class="flex-shrink-0"><i class="bi bi-telephone-fill"></i></span> (0260) 411xxxx</li>
+                    <li class="flex gap-2 items-start"><span class="flex-shrink-0"><i class="bi bi-envelope-fill"></i></span> layanan@kotasubang.go.id</li>
                 </ul>
             </div>
 

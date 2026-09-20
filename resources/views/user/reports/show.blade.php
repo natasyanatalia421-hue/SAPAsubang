@@ -5,6 +5,15 @@
 @section('content')
 <div class="max-w-3xl mx-auto space-y-6">
 
+    {{-- Tombol kembali --}}
+    <a href="{{ route('user.dashboard') }}"
+       class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        Kembali ke Dashboard
+    </a>
+    
     {{-- Header --}}
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
         <div class="flex items-start justify-between flex-wrap gap-3">
@@ -21,6 +30,25 @@
                 <span class="text-xs text-gray-500">👍 {{ $supportCount }} dukungan</span>
             </div>
         </div>
+
+        {{-- Action Edit/Delete: cuma untuk pemilik laporan & status masih menunggu_verifikasi --}}
+        @if(auth()->id() === $report->user_id && $report->status === 'menunggu_verifikasi')
+        <div class="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100">
+            <a href="{{ route('user.reports.edit', $report->id) }}"
+               class="flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-800 px-3 py-2 rounded-xl hover:bg-blue-50 transition-colors">
+                ✏️ Edit Laporan
+            </a>
+            <form action="{{ route('user.reports.destroy', $report->id) }}" method="POST"
+                  onsubmit="return confirm('Yakin mau hapus laporan ini? Tindakan ini tidak bisa dibatalkan.')">
+                @csrf
+                @method('DELETE')
+                <button type="submit"
+                        class="flex items-center gap-1.5 text-sm font-medium text-red-600 hover:text-red-800 px-3 py-2 rounded-xl hover:bg-red-50 transition-colors">
+                    🗑️ Hapus Laporan
+                </button>
+            </form>
+        </div>
+        @endif
 
         @if($report->status === 'ditolak' && $report->alasan_ditolak)
         <div class="mt-4 bg-red-50 border border-red-200 rounded-xl p-4">

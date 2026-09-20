@@ -8,6 +8,7 @@ use App\Http\Controllers\User\ReportController as UserReport;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\ReportController as AdminReport;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\UserController;   // tambahkan ini
 use App\Http\Controllers\Petugas\DashboardController as PetugasDashboard;
 use App\Http\Controllers\Petugas\TaskController;
 use Illuminate\Support\Facades\Route;
@@ -50,12 +51,17 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(f
     Route::get('/laporan/{report}',        [UserReport::class, 'show'])->name('reports.show');
     Route::get('/laporan/{report}/duplikat', [UserReport::class, 'duplicate'])->name('reports.duplicate');
     Route::post('/laporan/{report}/dukung', [UserReport::class, 'support'])->name('reports.support');
+
+    Route::get('/laporan/{report}/edit',   [UserReport::class, 'edit'])->name('reports.edit');
+    Route::put('/laporan/{report}',        [UserReport::class, 'update'])->name('reports.update');
+    Route::delete('/laporan/{report}',     [UserReport::class, 'destroy'])->name('reports.destroy');
 });
 
 // ── Admin ──────────────────────────────────────────────────────────────────────
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard',                           [AdminDashboard::class, 'index'])->name('dashboard');
-
+    Route::get('/laporan/export/pdf',   [AdminReport::class, 'exportPdf'])->name('reports.export.pdf');
+    Route::get('/laporan/export/excel', [AdminReport::class, 'exportExcel'])->name('reports.export.excel');
     Route::get('/laporan/{report}',                    [AdminReport::class, 'show'])->name('reports.show');
     Route::post('/laporan/{report}/verifikasi',        [AdminReport::class, 'verify'])->name('reports.verify');
     Route::post('/laporan/{report}/tolak',             [AdminReport::class, 'reject'])->name('reports.reject');
@@ -67,6 +73,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('/kategori',                           [CategoryController::class, 'store'])->name('categories.store');
     Route::put('/kategori/{category}',                 [CategoryController::class, 'update'])->name('categories.update');
     Route::delete('/kategori/{category}',              [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+    // Manajemen akun: khusus super admin.
+    Route::middleware('super_admin')->group(function () {
+        Route::resource('users', UserController::class)->except(['show']);
+        Route::patch('/users/{user}/toggle-status',    [UserController::class, 'toggleStatus'])->name('users.toggle-status');
+        Route::patch('/users/{user}/reset-password',   [UserController::class, 'resetPassword'])->name('users.reset-password');
+    });
 });
 
 // ── Petugas ────────────────────────────────────────────────────────────────────

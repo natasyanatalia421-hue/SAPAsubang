@@ -114,9 +114,15 @@
                         @elseif($l['content'] === 'laporan')
                         <div class="h-full flex flex-col p-2 gap-1.5">
                             <div class="text-[9px] font-bold text-gray-700">Laporan & Pengaduan</div>
-                            @foreach(['Jalan Rusak di Jl. Raya Subang','Tumpukan Sampah di Pasar','Lampu Jalan Mati di Perumahan'] as $item)
+                            @foreach([
+                                ['bi-cone-striped','Jalan Rusak di Jl. Raya Subang'],
+                                ['bi-trash3-fill','Tumpukan Sampah di Pasar'],
+                                ['bi-lightbulb-fill','Lampu Jalan Mati di Perumahan'],
+                            ] as [$ic, $item])
                             <div class="flex items-center gap-1.5 bg-gray-50 rounded-lg p-1.5 border border-gray-200">
-                                <div class="w-8 h-6 bg-gray-200 rounded flex-shrink-0 flex items-center justify-center text-[10px]">🛣️</div>
+                                <div class="w-8 h-6 bg-gray-200 rounded flex-shrink-0 flex items-center justify-center text-[11px] text-gray-600">
+                                    <i class="bi {{ $ic }}"></i>
+                                </div>
                                 <div>
                                     <div class="text-[7px] font-semibold text-gray-700 leading-tight">{{ $item }}</div>
                                     <div class="text-[6px] text-green-600">Dalam Proses</div>
@@ -167,11 +173,11 @@
         <div class="grid grid-cols-1 sm:grid-cols-5 gap-4">
             @php
             $langkah610 = [
-                ['no'=>6,'title'=>'Ambil Foto Masalah','desc'=>'Setelah login, kamera terbuka otomatis untuk memfoto masalah yang ditemukan di lokasi tersebut.','icon'=>'📷','bg'=>'bg-gray-800'],
-                ['no'=>7,'title'=>'Lokasi Otomatis','desc'=>'Sistem secara otomatis mengambil lokasi GPS saat foto diambil.','icon'=>'📍','bg'=>'bg-blue-50'],
-                ['no'=>8,'title'=>'Pilih Kategori & Keterangan','desc'=>'Pilih kategori masalah dan tambahkan keterangan (opsional), lalu kirim laporan.','icon'=>'🏷️','bg'=>'bg-gray-50'],
-                ['no'=>9,'title'=>'Cek Laporan Serupa','desc'=>'Jika tidak ada laporan serupa, sistem akan langsung membuat laporan baru.','icon'=>'🔍','bg'=>'bg-amber-50'],
-                ['no'=>10,'title'=>'Laporan Masuk ke Admin','desc'=>'Laporan akan diterima admin untuk diverifikasi. Anda dapat memantau statusnya melalui menu Laporan.','icon'=>'✅','bg'=>'bg-green-50'],
+                ['no'=>6,'title'=>'Ambil Foto Masalah','desc'=>'Setelah login, kamera terbuka otomatis untuk memfoto masalah yang ditemukan di lokasi tersebut.','icon'=>'bi-camera-fill','bg'=>'bg-gray-800','color'=>'text-white'],
+                ['no'=>7,'title'=>'Lokasi Otomatis','desc'=>'Sistem secara otomatis mengambil lokasi GPS saat foto diambil.','icon'=>'bi-geo-alt-fill','bg'=>'bg-blue-50','color'=>'text-blue-600'],
+                ['no'=>8,'title'=>'Pilih Kategori & Keterangan','desc'=>'Pilih kategori masalah dan tambahkan keterangan (opsional), lalu kirim laporan.','icon'=>'bi-tag-fill','bg'=>'bg-gray-50','color'=>'text-gray-600'],
+                ['no'=>9,'title'=>'Cek Laporan Serupa','desc'=>'Jika tidak ada laporan serupa, sistem akan langsung membuat laporan baru.','icon'=>'bi-search','bg'=>'bg-amber-50','color'=>'text-amber-600'],
+                ['no'=>10,'title'=>'Laporan Masuk ke Admin','desc'=>'Laporan akan diterima admin untuk diverifikasi. Anda dapat memantau statusnya melalui menu Laporan.','icon'=>'bi-check-circle-fill','bg'=>'bg-green-50','color'=>'text-green-600'],
             ];
             @endphp
             @foreach($langkah610 as $i => $l)
@@ -187,7 +193,7 @@
                         <span class="text-xs font-bold">{{ $l['title'] }}</span>
                     </div>
                     <div class="{{ $l['bg'] }} mx-3 mt-3 rounded-xl flex flex-col items-center justify-center gap-2 border border-dashed border-gray-300" style="height:140px;">
-                        <span class="text-4xl">{{ $l['icon'] }}</span>
+                        <i class="bi {{ $l['icon'] }} text-4xl {{ $l['color'] }}"></i>
                         <span class="text-xs text-gray-400 font-medium">Langkah {{ $l['no'] }}</span>
                     </div>
                     <div class="p-3 pb-4">
@@ -206,12 +212,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-6 gap-4">
             @php
             $langkah1116 = [
-                ['no'=>11,'title'=>'Tentukan Prioritas','desc'=>'Tentukan tingkat prioritas laporan ini berdasarkan kondisi dan dampaknya.','icon'=>'🎯'],
-                ['no'=>12,'title'=>'Pilih Petugas Terdekat','desc'=>'Sistem menampilkan petugas terdekat berdasarkan lokasi. Admin menugaskan petugas yang tersedia.','icon'=>'👷'],
-                ['no'=>13,'title'=>'Petugas Terima Tugas','desc'=>'Petugas menerima tugas dan menuju lokasi.','icon'=>'🚗'],
-                ['no'=>14,'title'=>'Tangani Masalah','desc'=>'Petugas menyelesaikan masalah dan mengirim bukti foto.','icon'=>'🔧'],
-                ['no'=>15,'title'=>'Admin Periksa & Konfirmasi','desc'=>'Admin memeriksa bukti, jika sesuai, konfirmasi laporan selesai.','icon'=>'✅'],
-                ['no'=>16,'title'=>'Laporan Selesai & Notifikasi','desc'=>'Pelapor dan pendukung mendapat notifikasi. User dapat melihat detail penyelesaian.','icon'=>'🔔'],
+                ['no'=>11,'title'=>'Tentukan Prioritas','desc'=>'Tentukan tingkat prioritas laporan ini berdasarkan kondisi dan dampaknya.','icon'=>'bi-bullseye'],
+                ['no'=>12,'title'=>'Pilih Petugas Terdekat','desc'=>'Sistem menampilkan petugas terdekat berdasarkan lokasi. Admin menugaskan petugas yang tersedia.','icon'=>'bi-person-badge-fill'],
+                ['no'=>13,'title'=>'Petugas Terima Tugas','desc'=>'Petugas menerima tugas dan menuju lokasi.','icon'=>'bi-car-front-fill'],
+                ['no'=>14,'title'=>'Tangani Masalah','desc'=>'Petugas menyelesaikan masalah dan mengirim bukti foto.','icon'=>'bi-wrench-adjustable'],
+                ['no'=>15,'title'=>'Admin Periksa & Konfirmasi','desc'=>'Admin memeriksa bukti, jika sesuai, konfirmasi laporan selesai.','icon'=>'bi-patch-check-fill'],
+                ['no'=>16,'title'=>'Laporan Selesai & Notifikasi','desc'=>'Pelapor dan pendukung mendapat notifikasi. User dapat melihat detail penyelesaian.','icon'=>'bi-bell-fill'],
             ];
             @endphp
             @foreach($langkah1116 as $i => $l)
@@ -227,7 +233,7 @@
                         <span class="text-[11px] font-bold leading-tight">{{ $l['title'] }}</span>
                     </div>
                     <div class="bg-gray-50 mx-3 mt-3 rounded-xl flex flex-col items-center justify-center gap-2 border border-dashed border-gray-300" style="height:130px;">
-                        <span class="text-4xl">{{ $l['icon'] }}</span>
+                        <i class="bi {{ $l['icon'] }} text-4xl text-green-600"></i>
                         <span class="text-[10px] text-gray-400 font-medium">Langkah {{ $l['no'] }}</span>
                     </div>
                     <div class="p-3 pb-4">
@@ -257,21 +263,21 @@
             </div>
             {{-- Tagline --}}
             <div class="flex items-center gap-2 text-sm font-semibold">
-                <span class="text-xl">📍</span> Ayo Laporkan Masalah di Kota Subang
+                <i class="bi bi-geo-alt-fill text-xl text-yellow-300"></i> Ayo Laporkan Masalah di Kota Subang
             </div>
             <div class="flex items-center gap-2 text-sm font-semibold">
-                <span class="text-xl">🤝</span> Bersama Kita Wujudkan Subang yang Lebih Baik
+                <i class="bi bi-people-fill text-xl text-yellow-300"></i> Bersama Kita Wujudkan Subang yang Lebih Baik
             </div>
             {{-- App store --}}
             <div class="flex flex-col gap-2">
                 <p class="text-xs text-green-200 font-semibold mb-1">Download Aplikasi</p>
                 <div class="flex gap-2">
                     <div class="flex items-center gap-2 bg-black/30 border border-green-600 rounded-xl px-3 py-2">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.35.2.74.24 1.12.14l12.3-7.1-2.58-2.59-10.84 9.55zM20.48 10.5L17.4 8.7l-2.91 2.9 2.92 2.92 3.1-1.8c.88-.5.88-1.72-.03-2.22zM2.08 1.23C2.03 1.42 2 1.64 2 1.88V22.1c0 .25.04.47.1.67l.11.1 11.19-11.2v-.26L2.19 1.12l-.11.11z"/></svg>
+                        <i class="bi bi-google-play text-xl"></i>
                         <div class="text-[9px]"><div class="text-white/60">Download di</div><div class="font-bold text-xs">Google Play</div></div>
                     </div>
                     <div class="flex items-center gap-2 bg-black/30 border border-green-600 rounded-xl px-3 py-2">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="white"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.42c1.27.07 2.13.73 2.87.75.87-.12 1.7-.8 3.04-.75 2.04.13 3.23 1.03 3.96 2.59-3.5 2.03-2.91 6.53.86 7.75-.18.58-.42 1.17-.73 1.52z"/></svg>
+                        <i class="bi bi-apple text-xl"></i>
                         <div class="text-[9px]"><div class="text-white/60">Download di</div><div class="font-bold text-xs">App Store</div></div>
                     </div>
                 </div>

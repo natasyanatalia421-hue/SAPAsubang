@@ -60,12 +60,22 @@
     </div>
     @endif
 
-    {{-- Semua laporan --}}
-    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm">
-        <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
-            <h3 class="font-semibold text-gray-800">Semua Laporan</h3>
+{{-- Semua laporan --}}
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm">
+    <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between flex-wrap gap-3">
+        <h3 class="font-semibold text-gray-800">Semua Laporan</h3>
+        <div class="flex items-center gap-3">
             <span class="text-xs text-gray-400">{{ $reports->total() }} total</span>
+            <a href="{{ route('admin.reports.export.pdf') }}"
+               class="flex items-center gap-1.5 text-xs font-medium text-red-600 hover:text-red-800 px-3 py-1.5 rounded-lg border border-red-200 hover:bg-red-50 transition-colors">
+                📄 Export PDF
+            </a>
+            <a href="{{ route('admin.reports.export.excel') }}"
+               class="flex items-center gap-1.5 text-xs font-medium text-green-600 hover:text-green-800 px-3 py-1.5 rounded-lg border border-green-200 hover:bg-green-50 transition-colors">
+                📊 Export Excel
+            </a>
         </div>
+    </div>
 
         <div class="overflow-x-auto">
             <table class="w-full text-sm">

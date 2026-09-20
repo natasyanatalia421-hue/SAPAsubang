@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ReportsExport;
 use App\Http\Controllers\Controller;
 use App\Models\Report;
 use App\Models\User;
 use App\Notifications\LaporanSelesai;
 use App\Services\ReportService;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
 {
@@ -113,5 +116,20 @@ class ReportController extends Controller
         $this->svc->changeStatus($report, 'sedang_ditangani', $data['catatan_revisi']);
 
         return back()->with('success', 'Permintaan revisi dikirim ke petugas.');
+    }
+
+    /** Export semua laporan ke Excel */
+    public function exportExcel()
+    {
+        return Excel::download(new ReportsExport, 'laporan-ecocity-' . now()->format('Ymd') . '.xlsx');
+    }
+
+    /** Export semua laporan ke PDF */
+    public function exportPdf()
+    {
+        $reports = Report::with(['category', 'user', 'petugas'])->latest()->get();
+        $pdf = Pdf::loadView('admin.reports.pdf', compact('reports'))->setPaper('a4', 'landscape');
+
+        return $pdf->download('laporan-ecocity-' . now()->format('Ymd') . '.pdf');
     }
 }

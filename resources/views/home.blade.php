@@ -192,13 +192,13 @@
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-5">
                 @foreach([
-                    ['icon'=>'🏔️','label'=>'Alam yang Indah'],
-                    ['icon'=>'🎭','label'=>'Budaya yang Kaya'],
-                    ['icon'=>'🍍','label'=>'Hasil Bumi Melimpah'],
-                    ['icon'=>'👥','label'=>'Masyarakat Ramah'],
+                    ['icon'=>'bi-tree-fill','label'=>'Alam yang Indah'],
+                    ['icon'=>'bi-mask','label'=>'Budaya yang Kaya'],
+                    ['icon'=>'bi-basket2-fill','label'=>'Hasil Bumi Melimpah'],
+                    ['icon'=>'bi-people-fill','label'=>'Masyarakat Ramah'],
                 ] as $item)
                 <div class="text-center min-w-[90px]">
-                    <div class="text-3xl mb-2">{{ $item['icon'] }}</div>
+                    <div class="text-3xl mb-2 text-white"><i class="bi {{ $item['icon'] }}"></i></div>
                     <p class="text-white font-bold text-xs leading-snug">{{ $item['label'] }}</p>
                 </div>
                 @endforeach
@@ -306,11 +306,17 @@
                             <div class="flex-1 bg-white/20 rounded text-center text-[8px] text-white/80 py-0.5">sapasubang.go.id</div>
                         </div>
                         <div class="p-3 space-y-2.5">
-                            <div class="bg-green-600 text-white text-xs font-bold px-3 py-2 rounded-xl text-center">📝 Buat Laporan Sekarang</div>
+                            <div class="bg-green-600 text-white text-xs font-bold px-3 py-2 rounded-xl text-center"><i class="bi bi-pencil-square"></i> Buat Laporan Sekarang</div>
                             <div class="text-[10px] font-bold text-gray-700">Laporan Terbaru</div>
                             @foreach($laporanTerbaru->take(4) as $r)
                             <div class="flex gap-2 bg-gray-50 rounded-xl p-2 border border-gray-100">
-                                <div class="w-9 h-9 bg-gray-200 rounded-lg flex items-center justify-center text-base flex-shrink-0">{{ $r->category->icon ?? '📋' }}</div>
+                                <div class="w-9 h-9 bg-gray-200 rounded-lg flex items-center justify-center text-base flex-shrink-0">
+                                    @if($r->category->icon ?? false)
+                                        {{ $r->category->icon }}
+                                    @else
+                                        <i class="bi bi-clipboard-fill text-gray-500"></i>
+                                    @endif
+                                </div>
                                 <div class="flex-1 min-w-0">
                                     <div class="text-[9px] font-semibold text-gray-700 line-clamp-1">{{ Str::limit($r->deskripsi,28) }}</div>
                                     <div class="text-[8px] text-green-600 mt-0.5">{{ $r->category->nama_kategori }}</div>
@@ -339,13 +345,13 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach([
-                ['🤝','Smart Synergy','Sinergi warga, pemerintah, dan teknologi untuk kemajuan Kota Subang.'],
-                ['📱','Mobile First','Layanan mudah diakses dari smartphone untuk semua warga.'],
-                ['📊','Data Driven','Kebijakan berbasis data laporan warga yang akurat dan real-time.'],
-                ['🌐','Digital Xperience','Pengalaman digital inklusif untuk semua lapisan masyarakat.'],
+                ['bi-diagram-3-fill','Smart Synergy','Sinergi warga, pemerintah, dan teknologi untuk kemajuan Kota Subang.'],
+                ['bi-phone-fill','Mobile First','Layanan mudah diakses dari smartphone untuk semua warga.'],
+                ['bi-bar-chart-fill','Data Driven','Kebijakan berbasis data laporan warga yang akurat dan real-time.'],
+                ['bi-globe','Digital Xperience','Pengalaman digital inklusif untuk semua lapisan masyarakat.'],
             ] as [$ic,$t,$d])
             <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all text-center group">
-                <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{{ $ic }}</div>
+                <div class="text-4xl mb-4 text-white group-hover:scale-110 transition-transform duration-300"><i class="bi {{ $ic }}"></i></div>
                 <h3 class="font-bold text-white text-base mb-2">{{ $t }}</h3>
                 <p class="text-green-100/80 text-sm leading-relaxed">{{ $d }}</p>
             </div>
@@ -371,7 +377,13 @@
                     @if(!str_starts_with($r->foto_sebelum,'demo/') && Storage::disk('public')->exists($r->foto_sebelum))
                         <img src="{{ Storage::url($r->foto_sebelum) }}" class="w-full h-full object-cover">
                     @else
-                        <span class="text-5xl mb-1">{{ $r->category->icon ?? '📋' }}</span>
+                        <span class="text-5xl mb-1 text-gray-400">
+                            @if($r->category->icon ?? false)
+                                {{ $r->category->icon }}
+                            @else
+                                <i class="bi bi-clipboard-fill"></i>
+                            @endif
+                        </span>
                         <span class="text-xs text-gray-400">Slot Foto Laporan</span>
                     @endif
                     <div class="absolute top-2 right-2">@include('components.status-badge',['status'=>$r->status])</div>
@@ -380,8 +392,8 @@
                     <span class="text-xs font-bold text-green-700 bg-green-50 px-2.5 py-0.5 rounded-full">{{ $r->category->nama_kategori }}</span>
                     <p class="font-semibold text-gray-800 text-sm mt-2 line-clamp-2 leading-snug">{{ $r->deskripsi }}</p>
                     <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-50 text-xs text-gray-400">
-                        <span>📍 Subang</span>
-                        <span>👍 {{ $r->supports_count }}</span>
+                        <span><i class="bi bi-geo-alt-fill"></i> Subang</span>
+                        <span><i class="bi bi-hand-thumbs-up-fill"></i> {{ $r->supports_count }}</span>
                         <span>{{ $r->created_at->diffForHumans() }}</span>
                     </div>
                 </div>
@@ -401,13 +413,13 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
             <div class="hidden lg:block absolute top-9 left-[12.5%] right-[12.5%] h-0.5 bg-green-100"></div>
             @foreach([
-                ['01','📷','Foto & Laporkan','Foto masalah, GPS ambil lokasi, pilih kategori, kirim.'],
-                ['02','✅','Verifikasi Admin','Admin periksa dan tentukan prioritas penanganan.'],
-                ['03','👷','Petugas Ditugaskan','Petugas terdekat ditugaskan menuju lokasi.'],
-                ['04','🔔','Selesai & Notifikasi','Bukti dikirim, admin konfirmasi, Anda dapat notifikasi.'],
+                ['01','bi-camera-fill','Foto & Laporkan','Foto masalah, GPS ambil lokasi, pilih kategori, kirim.'],
+                ['02','bi-check-circle-fill','Verifikasi Admin','Admin periksa dan tentukan prioritas penanganan.'],
+                ['03','bi-person-badge-fill','Petugas Ditugaskan','Petugas terdekat ditugaskan menuju lokasi.'],
+                ['04','bi-bell-fill','Selesai & Notifikasi','Bukti dikirim, admin konfirmasi, Anda dapat notifikasi.'],
             ] as [$n,$ic,$t,$d])
             <div class="text-center relative z-10">
-                <div class="w-18 h-18 bg-green-50 border-2 border-green-200 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 shadow-sm w-20 h-20">{{ $ic }}</div>
+                <div class="w-18 h-18 bg-green-50 border-2 border-green-200 rounded-2xl flex items-center justify-center text-3xl text-green-700 mx-auto mb-4 shadow-sm w-20 h-20"><i class="bi {{ $ic }}"></i></div>
                 <div class="text-xs font-black text-green-500 mb-2 tracking-widest">{{ $n }}</div>
                 <h3 class="font-bold text-gray-800 mb-2 text-sm">{{ $t }}</h3>
                 <p class="text-xs text-gray-500 leading-relaxed max-w-[170px] mx-auto">{{ $d }}</p>
@@ -440,7 +452,7 @@
                              loading="lazy"
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                        <p class="absolute bottom-3 left-4 text-white text-xs font-semibold drop-shadow">📍 Kabupaten Subang</p>
+                        <p class="absolute bottom-3 left-4 text-white text-xs font-semibold drop-shadow"><i class="bi bi-geo-alt-fill"></i> Kabupaten Subang</p>
                     </div>
                 </div>
             </div>
@@ -480,7 +492,7 @@
 
                 {{-- Latar hijau, tampil bila thumbnail gagal dimuat --}}
                 <div class="absolute inset-0 bg-gradient-to-br from-green-900 to-green-700 flex items-center justify-center">
-                    <span class="text-6xl opacity-20">🎬</span>
+                    <i class="bi bi-film text-6xl text-white opacity-20"></i>
                 </div>
 
                 {{-- Thumbnail otomatis dari YouTube --}}
@@ -495,9 +507,7 @@
                 {{-- Tombol play --}}
                 <div class="absolute inset-0 flex items-center justify-center">
                     <div class="w-14 h-14 bg-white/90 group-hover:bg-white rounded-full flex items-center justify-center shadow-2xl transition-all group-hover:scale-110">
-                        <svg class="w-6 h-6 text-green-700 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
-                        </svg>
+                        <i class="bi bi-play-fill text-2xl text-green-700 ml-0.5"></i>
                     </div>
                 </div>
 
@@ -506,7 +516,7 @@
                     <p class="text-white font-bold text-sm">{{ $v['judul'] }}</p>
                     <p class="text-white/70 text-xs mt-0.5">{{ $v['sub'] }}</p>
                     <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-yellow-300 mt-1.5">
-                        ▶ Tonton di YouTube
+                        <i class="bi bi-play-fill"></i> Tonton di YouTube
                     </span>
                 </div>
             </a>
