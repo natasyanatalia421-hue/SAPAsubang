@@ -8,10 +8,6 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_super_admin')->default(false);
-        });
-
         Schema::create('activity_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('actor_id')->nullable()->constrained('users')->nullOnDelete();
@@ -27,9 +23,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('activity_logs');
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_super_admin');
-        });
     }
 };
