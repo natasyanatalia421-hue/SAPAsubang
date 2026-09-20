@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Officer::create([
             'user_id'               => $petugas1->id,
-            'spesialisasi_kategori' => [1, 3, 6], // Jalan Rusak, Banjir, Saluran Air
+            'spesialisasi_kategori' => [1, 3, 6],
             'status_aktif'          => true,
         ]);
 
@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Officer::create([
             'user_id'               => $petugas2->id,
-            'spesialisasi_kategori' => [2, 4, 5], // Sampah, Lampu, Fasilitas
+            'spesialisasi_kategori' => [2, 4, 5],
             'status_aktif'          => true,
         ]);
 
@@ -94,13 +94,12 @@ class DatabaseSeeder extends Seeder
 
         // ── Laporan dengan berbagai status ────────────────────────────────────────
 
-        // 1. Laporan selesai — dengan bukti
         $r1 = Report::create([
             'kode_laporan' => 'LP-20260901-0001',
             'user_id'      => $user1->id,
             'category_id'  => 1,
             'foto_sebelum' => 'demo/jalan-rusak.jpg',
-            'latitude'     => -6.5640,   // Subang Kota
+            'latitude'     => -6.5640,
             'longitude'    => 107.7634,
             'deskripsi'    => 'Jalan berlubang besar di depan pasar, membahayakan pengendara motor.',
             'status'       => 'selesai',
@@ -122,13 +121,12 @@ class DatabaseSeeder extends Seeder
         Notification::kirim($user2->id, 'Laporan yang Anda Dukung Selesai', 'Laporan LP-20260901-0001 yang Anda dukung sudah diselesaikan.', $r1->id);
         Notification::kirim($user3->id, 'Laporan yang Anda Dukung Selesai', 'Laporan LP-20260901-0001 yang Anda dukung sudah diselesaikan.', $r1->id);
 
-        // 2. Laporan sedang ditangani
         $r2 = Report::create([
             'kode_laporan' => 'LP-20260902-0001',
             'user_id'      => $user2->id,
             'category_id'  => 2,
             'foto_sebelum' => 'demo/sampah.jpg',
-            'latitude'     => -6.5720,   // Kalijati
+            'latitude'     => -6.5720,
             'longitude'    => 107.7510,
             'deskripsi'    => 'Sampah menumpuk di pinggir jalan sejak 3 hari lalu, bau tidak sedap.',
             'status'       => 'sedang_ditangani',
@@ -144,13 +142,12 @@ class DatabaseSeeder extends Seeder
         ReportSupport::create(['report_id' => $r2->id, 'user_id' => $user1->id]);
         Notification::kirim($petugas2->id, 'Tugas Baru', 'Anda ditugaskan menangani laporan LP-20260902-0001 (Sampah Menumpuk).', $r2->id);
 
-        // 3. Laporan menunggu verifikasi (baru masuk)
         $r3 = Report::create([
             'kode_laporan' => 'LP-20260903-0001',
             'user_id'      => $user3->id,
             'category_id'  => 4,
             'foto_sebelum' => 'demo/lampu-mati.jpg',
-            'latitude'     => -6.5580,   // Pagaden
+            'latitude'     => -6.5580,
             'longitude'    => 107.8020,
             'deskripsi'    => 'Lampu jalan di RT 05 sudah mati selama seminggu, gelap sekali malam hari.',
             'status'       => 'menunggu_verifikasi',
@@ -160,13 +157,12 @@ class DatabaseSeeder extends Seeder
         ]);
         ReportStatusLog::create(['report_id' => $r3->id, 'status_lama' => null, 'status_baru' => 'menunggu_verifikasi', 'diubah_oleh' => $user3->id]);
 
-        // 4. Laporan ditolak
         $r4 = Report::create([
             'kode_laporan'  => 'LP-20260903-0002',
             'user_id'       => $user1->id,
             'category_id'   => 3,
             'foto_sebelum'  => 'demo/banjir.jpg',
-            'latitude'      => -6.5400,   // Cisalak
+            'latitude'      => -6.5400,
             'longitude'     => 107.7800,
             'deskripsi'     => 'Ada genangan air di halaman rumah saya.',
             'status'        => 'ditolak',
@@ -178,13 +174,12 @@ class DatabaseSeeder extends Seeder
         ReportStatusLog::create(['report_id' => $r4->id, 'status_lama' => 'menunggu_verifikasi', 'status_baru' => 'ditolak', 'diubah_oleh' => $admin->id, 'catatan' => 'Bukan fasilitas umum']);
         Notification::kirim($user1->id, 'Laporan Ditolak', 'Laporan LP-20260903-0002 ditolak: Laporan tidak memenuhi kriteria — genangan di pekarangan pribadi bukan fasilitas umum.', $r4->id);
 
-        // 5. Laporan menunggu konfirmasi admin
         $r5 = Report::create([
             'kode_laporan' => 'LP-20260904-0001',
             'user_id'      => $user2->id,
             'category_id'  => 5,
             'foto_sebelum' => 'demo/halte-rusak.jpg',
-            'latitude'     => -6.5810,   // Subang selatan
+            'latitude'     => -6.5810,
             'longitude'    => 107.7450,
             'deskripsi'    => 'Halte bus di Jl. Merdeka atapnya roboh, berbahaya bagi penumpang.',
             'status'       => 'menunggu_konfirmasi',

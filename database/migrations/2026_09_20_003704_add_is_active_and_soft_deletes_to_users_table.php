@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -9,27 +9,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_super_admin')->default(false);
-        });
-
-        Schema::create('activity_logs', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('actor_id')->nullable()->constrained('users')->nullOnDelete();
-            $table->string('action', 50);
-            $table->unsignedBigInteger('target_id')->nullable();
-            $table->string('target_name')->nullable();
-            $table->text('description');
-            $table->string('ip_address', 45)->nullable();
-            $table->timestamps();
+            $table->boolean('is_active')->default(true);
+            $table->softDeletes();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('activity_logs');
-
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_super_admin');
+            $table->dropColumn('is_active');
+            $table->dropSoftDeletes();
         });
     }
 };
