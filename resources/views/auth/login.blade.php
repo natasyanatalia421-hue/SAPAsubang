@@ -135,16 +135,6 @@
                 </button>
             </form>
 
-            {{-- Divider --}}
-            <div class="relative my-6">
-                <div class="absolute inset-0 flex items-center">
-                    <div class="w-full border-t border-gray-100"></div>
-                </div>
-                <div class="relative flex justify-center">
-                    <span class="px-3 bg-white text-xs text-gray-400">atau masuk dengan</span>
-                </div>
-            </div>
-
             {{-- Divider daftar --}}
             <div class="relative my-6">
                 <div class="absolute inset-0 flex items-center">
